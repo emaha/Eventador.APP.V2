@@ -9,8 +9,6 @@ using Eventador.APP.V2.Models;
 
 namespace Eventador.APP.V2.Views
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class MainPage : MasterDetailPage
     {
@@ -34,6 +32,9 @@ namespace Eventador.APP.V2.Views
                         MenuPages.Add(id, new NavigationPage(new ItemsPage()));
                         break;
                     case (int)MenuItemType.About:
+                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        break;
+                    case (int)MenuItemType.Foo:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
                 }

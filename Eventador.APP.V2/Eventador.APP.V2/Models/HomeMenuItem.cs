@@ -7,7 +7,8 @@ namespace Eventador.APP.V2.Models
     public enum MenuItemType
     {
         Browse,
-        About
+        About,
+        Foo
     }
     public class HomeMenuItem
     {

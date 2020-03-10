@@ -36,6 +36,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10">
+                            <Image Source="event3.jpg"/>
                             <Label Text="{Binding Text}" 
                                 d:Text="{Binding .}"
                                 LineBreakMode="NoWrap" 

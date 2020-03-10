@@ -32,6 +32,14 @@ namespace Eventador.APP.V2.Views
                 Description = "This is an item description."
             };
 
+            Image img = new Image() 
+            { 
+                Source = "event2.jpg"
+            };
+
+
+
+
             viewModel = new ItemDetailViewModel(item);
             BindingContext = viewModel;
         }
