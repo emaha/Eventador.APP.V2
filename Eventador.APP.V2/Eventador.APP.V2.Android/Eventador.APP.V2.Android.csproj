@@ -86,6 +86,14 @@
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Eventador.APP.V2.Core\Eventador.APP.V2.Core.csproj">
+      <Project>{e909b269-a23d-49b1-a696-53bbdceb8302}</Project>
+      <Name>Eventador.APP.V2.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Eventador.APP.V2.Domain\Eventador.APP.V2.Domain.csproj">
+      <Project>{e9724af6-3a9a-42dd-b7e0-971136ed587b}</Project>
+      <Name>Eventador.APP.V2.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Eventador.APP.V2\Eventador.APP.V2.csproj">
       <Project>{17124D9F-8455-4052-98AD-26C49B9595C1}</Project>
       <Name>Eventador.APP.V2</Name>
