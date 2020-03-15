@@ -13,7 +13,9 @@ namespace Eventador.APP.V2
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<EventDataStore>();
+            DependencyService.Register<EventadorApi>();
+
             MainPage = new MainPage();
         }
 

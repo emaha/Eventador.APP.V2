@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using Eventador.APP.V2.Models;
-using Eventador.APP.V2.Views;
+﻿using Eventador.APP.V2.Models;
 using Eventador.APP.V2.ViewModels;
+using System;
+using System.ComponentModel;
+using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Views
 {
@@ -29,7 +22,7 @@ namespace Eventador.APP.V2.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
+            var item = args.SelectedItem as SmallEventResponseModel;
             if (item == null)
                 return;
 

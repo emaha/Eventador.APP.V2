@@ -6,10 +6,10 @@ namespace Eventador.APP.V2.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public SmallEventResponseModel Item { get; set; }
+        public ItemDetailViewModel(SmallEventResponseModel item = null)
         {
-            Title = item?.Text;
+            Title = item?.Title;
             Item = item;
         }
     }

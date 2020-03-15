@@ -26,9 +26,9 @@ namespace Eventador.APP.V2.Views
         {
             InitializeComponent();
 
-            var item = new Item
+            var item = new SmallEventResponseModel
             {
-                Text = "Item 1",
+                Title = "Item 1",
                 Description = "This is an item description."
             };
 

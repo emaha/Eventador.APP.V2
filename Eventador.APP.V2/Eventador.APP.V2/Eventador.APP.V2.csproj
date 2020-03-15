@@ -12,12 +12,12 @@
 
   <ItemGroup>
     <PackageReference Include="refit" Version="5.0.23" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Eventador.APP.V2.Core\Eventador.APP.V2.Core.csproj" />
-    <ProjectReference Include="..\..\Eventador.APP.V2.Domain\Eventador.APP.V2.Domain.csproj" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
 </Project>

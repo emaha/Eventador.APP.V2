@@ -13,15 +13,15 @@ namespace Eventador.APP.V2.Views
     [DesignTimeVisible(false)]
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
+        public SmallEventResponseModel Item { get; set; }
 
         public NewItemPage()
         {
             InitializeComponent();
 
-            Item = new Item
+            Item = new SmallEventResponseModel
             {
-                Text = "Item name",
+                Title = "Item name",
                 Description = "This is an item description."
             };
 

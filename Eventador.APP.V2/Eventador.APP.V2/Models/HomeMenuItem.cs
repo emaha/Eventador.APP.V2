@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Eventador.APP.V2.Models
+﻿namespace Eventador.APP.V2.Models
 {
     public enum MenuItemType
     {
-        Browse,
-        About,
-        Foo
+        BrowseEvents,
+        MyEvents,
+        Favourites,
+        Profile,
+        Friends,
+        Messages
     }
     public class HomeMenuItem
     {

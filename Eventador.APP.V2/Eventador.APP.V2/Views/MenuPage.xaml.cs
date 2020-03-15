@@ -20,9 +20,12 @@ namespace Eventador.APP.V2.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" },
-                new HomeMenuItem {Id = MenuItemType.Foo, Title="Foo" }
+                new HomeMenuItem {Id = MenuItemType.BrowseEvents, Title="Browse Events" },
+                new HomeMenuItem {Id = MenuItemType.MyEvents, Title="My Events" },
+                new HomeMenuItem {Id = MenuItemType.Favourites, Title="Favourites" },
+                new HomeMenuItem {Id = MenuItemType.Messages, Title="Messages" },
+                new HomeMenuItem {Id = MenuItemType.Friends, Title="Friends" },
+                new HomeMenuItem {Id = MenuItemType.Profile, Title="Profile" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

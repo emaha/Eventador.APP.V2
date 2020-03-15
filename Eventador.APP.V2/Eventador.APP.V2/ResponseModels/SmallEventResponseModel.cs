@@ -17,5 +17,10 @@ namespace Eventador.APP.V2.Models
         /// </summary>
         public string Title { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description { get; set; }
+
     }
 }

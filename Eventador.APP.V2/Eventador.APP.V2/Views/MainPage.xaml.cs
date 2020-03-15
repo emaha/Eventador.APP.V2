@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Eventador.APP.V2.Models;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using Eventador.APP.V2.Models;
 
 namespace Eventador.APP.V2.Views
 {
@@ -16,10 +13,9 @@ namespace Eventador.APP.V2.Views
         public MainPage()
         {
             InitializeComponent();
-
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+            MenuPages.Add((int)MenuItemType.BrowseEvents, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -28,15 +24,17 @@ namespace Eventador.APP.V2.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemType.Browse:
+                    case (int)MenuItemType.BrowseEvents:
                         MenuPages.Add(id, new NavigationPage(new ItemsPage()));
                         break;
-                    case (int)MenuItemType.About:
+                    case (int)MenuItemType.MyEvents:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
-                    case (int)MenuItemType.Foo:
+                    case (int)MenuItemType.Favourites:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
+                    default:
+                        return;
                 }
             }
 
