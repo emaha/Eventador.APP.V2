@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Eventador.APP.V2.Views.CreateEventPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Text" FontSize="Medium" />
+            <Entry Text="{Binding Item.Title}" d:Text="Item name" FontSize="Small" />
+            <Label Text="Description" FontSize="Medium" />
+            <Editor Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small" Margin="0" />
+            <Label x:Name="header" Text="Выберите тип доступа" FontSize="Medium"/>
+            <Picker x:Name="picker" SelectedIndexChanged="picker_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>Публичное (видно всем)</x:String>
+                    <x:String>Приватное (видно друзьям)</x:String>
+                    <x:String>Только приглашение</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="Выберите дату" FontSize="Medium" />
+            <DatePicker Format="D" DateSelected="datePicker_DateSelected">
+                <DatePicker.MinimumDate>1/01/2020</DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>1/01/2050</DatePicker.MaximumDate>
+            </DatePicker>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

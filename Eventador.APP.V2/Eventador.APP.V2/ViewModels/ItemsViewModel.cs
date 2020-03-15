@@ -19,7 +19,7 @@ namespace Eventador.APP.V2.ViewModels
             Items = new ObservableCollection<SmallEventResponseModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, SmallEventResponseModel>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<CreateEventPage, SmallEventResponseModel>(this, "AddItem", async (obj, item) =>
             {
                 var newItem = item as SmallEventResponseModel;
                 Items.Add(newItem);

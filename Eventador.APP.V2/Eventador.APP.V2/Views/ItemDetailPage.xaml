@@ -5,8 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Eventador.APP.V2.Views.ItemDetailPage"
-             
              Title="{Binding Title}">
+    
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Text:" FontSize="Medium" />
@@ -14,6 +14,12 @@
             <Label Text="Description:" FontSize="Medium" />
             <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
             <Image Source="event1.jpg"/>
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="GetIn" Clicked="GetInButton_Clicked"/>
+                <Button Text="Chat" Clicked="ChatButton_Clicked"/>
+            </StackLayout>
+            <Button Text="Finish event" HorizontalOptions="CenterAndExpand"/>
+            
         </StackLayout>
     </ScrollView>
 

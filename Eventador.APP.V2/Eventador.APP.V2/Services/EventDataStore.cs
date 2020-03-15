@@ -22,7 +22,13 @@ namespace Eventador.APP.V2.Services
 
         public async Task<bool> AddItemAsync(SmallEventResponseModel item)
         {
-            var request = new EventCreateRequest() { Title = item.Title, Description = item.Description, RegionId = 1 };
+            var request = new EventCreateRequest() 
+            {
+                Title = item.Title, 
+                Description = item.Description, 
+                RegionId = 1,
+                StartDate = item.StartDate
+            };
             await _eventadorApi.CreateEvent(request);
 
             return await Task.FromResult(true);

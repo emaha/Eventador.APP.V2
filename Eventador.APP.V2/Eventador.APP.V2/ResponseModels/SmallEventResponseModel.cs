@@ -22,5 +22,11 @@ namespace Eventador.APP.V2.Models
         /// </summary>
         public string Description { get; set; }
 
+
+        /// <summary>
+        /// Дата начала
+        /// </summary>
+        public DateTime StartDate { get; set; }
+
     }
 }

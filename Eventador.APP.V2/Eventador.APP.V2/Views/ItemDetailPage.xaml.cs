@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 
 using Eventador.APP.V2.Models;
 using Eventador.APP.V2.ViewModels;
+using System.Windows.Input;
 
 namespace Eventador.APP.V2.Views
 {
@@ -13,7 +14,27 @@ namespace Eventador.APP.V2.Views
     [DesignTimeVisible(false)]
     public partial class ItemDetailPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        private ItemDetailViewModel viewModel;
+
+        public ItemDetailPage()
+        {
+            InitializeComponent();
+
+
+            var item = new SmallEventResponseModel
+            {
+                Title = "Item 1",
+                Description = "This is an item description."
+            };
+
+            Image img = new Image()
+            {
+                Source = "event2.jpg"
+            };
+
+            viewModel = new ItemDetailViewModel(item);
+            BindingContext = viewModel;
+        }
 
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
@@ -22,26 +43,16 @@ namespace Eventador.APP.V2.Views
             BindingContext = this.viewModel = viewModel;
         }
 
-        public ItemDetailPage()
+        private void GetInButton_Clicked(object sender, EventArgs e)
         {
-            InitializeComponent();
+            DisplayAlert("TitleString", "Message", "Cancel");
 
-            var item = new SmallEventResponseModel
-            {
-                Title = "Item 1",
-                Description = "This is an item description."
-            };
+        }
 
-            Image img = new Image() 
-            { 
-                Source = "event2.jpg"
-            };
+        private void ChatButton_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("TitleString", "Message", "Cancel");
 
-
-
-
-            viewModel = new ItemDetailViewModel(item);
-            BindingContext = viewModel;
         }
     }
 }
