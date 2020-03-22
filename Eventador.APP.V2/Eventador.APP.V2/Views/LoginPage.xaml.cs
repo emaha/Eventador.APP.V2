@@ -1,8 +1,6 @@
-﻿using Eventador.APP.V2.Common;
-using Eventador.APP.V2.Requests;
+﻿using Eventador.APP.V2.Requests;
 using Eventador.APP.V2.ResponseModels;
 using Eventador.APP.V2.Services;
-using Refit;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -13,17 +11,14 @@ namespace Eventador.APP.V2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-
         private IEventadorApi _eventadorApi;
 
         public LoginPage()
         {
+            _eventadorApi = EventadorApi.ResolveApi();
             InitializeComponent();
 
-            _eventadorApi = RestService.For<IEventadorApi>(Constants.EventadorApiURL);
-
             LogInButton.Clicked += LogInButton_Click;
-
         }
 
         private async void LogInButton_Click(object sender, EventArgs e)
@@ -37,11 +32,13 @@ namespace Eventador.APP.V2.Views
                 await SecureStorage.SetAsync("RefreshToken", token.RefreshToken);
                 await SecureStorage.SetAsync("Expires", token.Expires.ToString());
 
+                EventadorApi.RefreshToken();
+
                 Application.Current.MainPage = new MainPage();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await DisplayAlert("Log In", "Something went wrong", "Ok");
+                await DisplayAlert("Log In", $"Something went wrong.\n{ex}", "Ok");
             }
         }
     }

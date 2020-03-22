@@ -18,7 +18,16 @@
                 <Button Text="GetIn" Clicked="GetInButton_Clicked"/>
                 <Button Text="Chat" Clicked="ChatButton_Clicked"/>
             </StackLayout>
-            <Button Text="Finish event" HorizontalOptions="CenterAndExpand" Clicked="FinishButton_Clicked"/>
+            <Button Text="Finish event" HorizontalOptions="CenterAndExpand" Clicked="FinishButton_Clicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding isVis}"
+                                 Value="false">
+                        <Setter Property="IsVisible" Value="False"/>
+                        <Setter Property="BackgroundColor"  Value="Red" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
             
         </StackLayout>
     </ScrollView>

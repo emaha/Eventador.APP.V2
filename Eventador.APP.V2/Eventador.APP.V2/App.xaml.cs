@@ -5,6 +5,7 @@ using Eventador.APP.V2.Services;
 using Eventador.APP.V2.Views;
 using Xamarin.Essentials;
 
+
 namespace Eventador.APP.V2
 {
     public partial class App : Application
@@ -15,8 +16,7 @@ namespace Eventador.APP.V2
             InitializeComponent();
 
             DependencyService.Register<EventDataStore>();
-            DependencyService.Register<EventadorApi>();
-
+            
             CheckToken();
         }
 

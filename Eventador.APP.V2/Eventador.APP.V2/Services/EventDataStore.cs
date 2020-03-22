@@ -1,31 +1,28 @@
-﻿using System;
+﻿using Eventador.APP.V2.Models;
+using Eventador.APP.V2.Requests;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Eventador.APP.V2.Common;
-using Eventador.APP.V2.Models;
-using Eventador.APP.V2.Requests;
-using Refit;
 
 namespace Eventador.APP.V2.Services
 {
     public class EventDataStore : IDataStore<SmallEventResponseModel>
     {
         private readonly List<SmallEventResponseModel> items;
-        private IEventadorApi _eventadorApi;
+        private readonly IEventadorApi _eventadorApi;
 
         public EventDataStore()
         {
-            _eventadorApi = RestService.For<IEventadorApi>(Constants.EventadorApiURL);
+            _eventadorApi = EventadorApi.ResolveApi();
             items = new List<SmallEventResponseModel>();
         }
 
         public async Task<bool> AddItemAsync(SmallEventResponseModel item)
         {
-            var request = new EventCreateRequest() 
+            var request = new EventCreateRequest()
             {
-                Title = item.Title, 
-                Description = item.Description, 
+                Title = item.Title,
+                Description = item.Description,
                 RegionId = 1,
                 StartDate = item.StartDate
             };
