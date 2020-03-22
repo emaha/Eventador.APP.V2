@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Eventador.APP.V2.Services;
 using Eventador.APP.V2.Views;
+using Xamarin.Essentials;
 
 namespace Eventador.APP.V2
 {
@@ -16,7 +17,21 @@ namespace Eventador.APP.V2
             DependencyService.Register<EventDataStore>();
             DependencyService.Register<EventadorApi>();
 
-            MainPage = new MainPage();
+            CheckToken();
+        }
+
+        private async void CheckToken()
+        {
+            var token = await SecureStorage.GetAsync("AccessToken");
+            if(!string.IsNullOrWhiteSpace(token))
+            {
+                MainPage = new MainPage();
+            }
+            else
+            {
+                MainPage = new LoginPage();
+            }
+
         }
 
         protected override void OnStart()

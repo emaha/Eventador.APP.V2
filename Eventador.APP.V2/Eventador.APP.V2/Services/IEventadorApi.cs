@@ -1,5 +1,6 @@
 ﻿using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Requests;
+using Eventador.APP.V2.ResponseModels;
 using Refit;
 using System.Threading.Tasks;
 
@@ -8,19 +9,38 @@ namespace Eventador.APP.V2.Services
     [Headers("Accept: application/json")]
     public interface IEventadorApi
     {
-        #region Users
+        #region Auth
+
         /// <summary>
-        /// 
+        /// Авторизация
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Post("/Auth/SignIn")]
+        Task<TokenModel> SignIn(CredentialsRequest request);
+
+        /// <summary>
+        /// Выход
         /// </summary>
         /// <returns></returns>
-        [Get("/User")]
+        [Post("/Auth/SignOut")]
+        Task SignOut();
+        
+        #endregion
+
+        #region Users
+        /// <summary>
+        /// Полуение пользователей
+        /// </summary>
+        /// <returns></returns>
+        [Get("/Users")]
         Task<UserResponseModel> GetUser();
 
         /// <summary>
-        /// 
+        /// Создать пользователя
         /// </summary>
         /// <returns></returns>
-        [Post("/User")]
+        [Post("/Users")]
         Task CreateUser();
 
         #endregion 
@@ -30,28 +50,64 @@ namespace Eventador.APP.V2.Services
         /// Получить детальную модель события
         /// </summary>
         /// <returns></returns>
-        [Get("/Event/{id}")]
+        [Get("/Events/{id}")]
         Task<EventResponseModel> GetEventById(long id);
 
-        [Get("/Event/Region/{id}")]
+        /// <summary>
+        /// Получение событий по региону
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Get("/Events/Region/{id}")]
         Task<SmallEventResponseModel[]> GetEventsByRegion(long id);
 
-        [Get("/Event/Author/{id}")]
+
+        /// <summary>
+        /// Получение событий по автору
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Get("/Events/Author/{id}")]
         Task<SmallEventResponseModel[]> GetEventsByAuthor(long id);
 
-        [Post("/Event")]
+        /// <summary>
+        /// Создание события
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Post("/Events")]
         Task CreateEvent(EventCreateRequest request);
 
-        [Put("/Event)")]
+        /// <summary>
+        /// Обновление события
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Put("/Events)")]
         Task UpdateEvent(EventUpdateRequest request);
 
-        [Post("/Event/Finish/{id}")]
+        /// <summary>
+        /// Завершить событие
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Post("/Events/Finish/{id}")]
         Task FinishEvent(long id);
 
-        [Post("/Event/CheckIn/{id}")]
+        /// <summary>
+        /// Участвовать в событии
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Post("/Events/CheckIn/{id}")]
         Task CheckIn(long id);
 
-        [Post("/Event/CheckOut/{id}")]
+        /// <summary>
+        /// Выйти из участия в событии
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Post("/Events/CheckOut/{id}")]
         Task CheckOut(long id);
 
         #endregion

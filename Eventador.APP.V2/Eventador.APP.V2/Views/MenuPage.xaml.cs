@@ -25,7 +25,8 @@ namespace Eventador.APP.V2.Views
                 new HomeMenuItem {Id = MenuItemType.Favourites, Title="Favourites" },
                 new HomeMenuItem {Id = MenuItemType.Messages, Title="Messages" },
                 new HomeMenuItem {Id = MenuItemType.Friends, Title="Friends" },
-                new HomeMenuItem {Id = MenuItemType.Profile, Title="Profile" }
+                new HomeMenuItem {Id = MenuItemType.Profile, Title="Profile" },
+                new HomeMenuItem {Id = MenuItemType.Logout, Title="Logout" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

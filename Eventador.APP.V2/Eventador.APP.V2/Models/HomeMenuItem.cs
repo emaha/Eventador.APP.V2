@@ -7,7 +7,8 @@
         Favourites,
         Profile,
         Friends,
-        Messages
+        Messages,
+        Logout
     }
     public class HomeMenuItem
     {

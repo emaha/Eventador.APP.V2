@@ -18,7 +18,7 @@
                 <Button Text="GetIn" Clicked="GetInButton_Clicked"/>
                 <Button Text="Chat" Clicked="ChatButton_Clicked"/>
             </StackLayout>
-            <Button Text="Finish event" HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Finish event" HorizontalOptions="CenterAndExpand" Clicked="FinishButton_Clicked"/>
             
         </StackLayout>
     </ScrollView>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Views
@@ -35,6 +36,11 @@ namespace Eventador.APP.V2.Views
                         break;
                     case (int)MenuItemType.Friends:
 
+                        break;
+                    case (int)MenuItemType.Logout:
+                        MenuPages.Add(id, new NavigationPage(new LoginPage()));
+                        SecureStorage.Remove("AccessToken");
+                        Application.Current.MainPage = new LoginPage();
                         break;
                     default:
                         return;

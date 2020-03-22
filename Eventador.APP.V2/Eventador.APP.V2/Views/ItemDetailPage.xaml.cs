@@ -45,14 +45,19 @@ namespace Eventador.APP.V2.Views
 
         private void GetInButton_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("TitleString", "Message", "Cancel");
+            DisplayAlert("TitleString", "Getting in", "Ok");
 
         }
 
         private void ChatButton_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("TitleString", "Message", "Cancel");
+            DisplayAlert("TitleString", "Chat", "Ok");
 
+        }
+
+        private void FinishButton_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("TitleString", "Finish", "Ok");
         }
     }
 }
