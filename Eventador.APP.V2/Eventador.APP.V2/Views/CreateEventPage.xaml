@@ -12,20 +12,20 @@
 
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Item.Title}" d:Text="Item name" FontSize="Small" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small" Margin="0" />
+            <Entry Placeholder="Event Title" Text="{Binding Item.Title}" d:Text="Item name" FontSize="Small" />
+            <Editor Placeholder="Description" Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small" Margin="0" />
+            
+            <Label Text="Выбери тип события"/>
+            <Picker x:Name="eventTypePicker" ItemsSource="{Binding Item.EventTypes}" 
+                    SelectedItem="{Binding Item.SelectedEventType}"
+                    SelectedIndexChanged="eventTypePicker_SelectedIndexChanged"/>
+            
             <Label x:Name="header" Text="Выберите тип доступа" FontSize="Medium"/>
-            <Picker x:Name="picker" SelectedIndexChanged="picker_SelectedIndexChanged">
-                <Picker.Items>
-                    <x:String>Публичное (видно всем)</x:String>
-                    <x:String>Приватное (видно друзьям)</x:String>
-                    <x:String>Только приглашение</x:String>
-                </Picker.Items>
-            </Picker>
-
+            <Picker x:Name="accessTypePicker" ItemsSource="{Binding Item.AccessTypes}" 
+                    SelectedItem="{Binding Item.SelectedAccessType}"
+                    SelectedIndexChanged="accessTypePicker_SelectedIndexChanged"/>
             <Label Text="Выберите дату" FontSize="Medium" />
+            
             <DatePicker Format="D" DateSelected="datePicker_DateSelected">
                 <DatePicker.MinimumDate>1/01/2020</DatePicker.MinimumDate>
                 <DatePicker.MaximumDate>1/01/2050</DatePicker.MaximumDate>

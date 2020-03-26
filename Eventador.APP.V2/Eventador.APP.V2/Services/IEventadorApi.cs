@@ -1,6 +1,5 @@
 ﻿using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Requests;
-using Eventador.APP.V2.ResponseModels;
 using Refit;
 using System.Threading.Tasks;
 
@@ -59,7 +58,7 @@ namespace Eventador.APP.V2.Services
         /// <param name="id"></param>
         /// <returns></returns>
         [Get("/Events/Region/{id}")]
-        Task<SmallEventResponseModel[]> GetEventsByRegion(long id);
+        Task<SmallEventModel[]> GetEventsByRegion(long id);
 
 
         /// <summary>
@@ -68,7 +67,7 @@ namespace Eventador.APP.V2.Services
         /// <param name="id"></param>
         /// <returns></returns>
         [Get("/Events/Author/{id}")]
-        Task<SmallEventResponseModel[]> GetEventsByAuthor(long id);
+        Task<SmallEventModel[]> GetEventsByAuthor(long id);
 
         /// <summary>
         /// Создание события

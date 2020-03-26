@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Eventador.APP.V2.ResponseModels
+﻿namespace Eventador.APP.V2.Models
 {
     /// <summary>
     /// Модель получения токенов

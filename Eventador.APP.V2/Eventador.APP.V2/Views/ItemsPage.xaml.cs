@@ -22,7 +22,7 @@ namespace Eventador.APP.V2.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as SmallEventResponseModel;
+            var item = args.SelectedItem as SmallEventModel;
             if (item == null)
                 return;
 

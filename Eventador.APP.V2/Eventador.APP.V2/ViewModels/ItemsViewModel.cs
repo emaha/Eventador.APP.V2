@@ -10,18 +10,18 @@ namespace Eventador.APP.V2.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        public ObservableCollection<SmallEventResponseModel> Items { get; set; }
+        public ObservableCollection<SmallEventModel> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         public ItemsViewModel()
         {
             Title = "Browse";
-            Items = new ObservableCollection<SmallEventResponseModel>();
+            Items = new ObservableCollection<SmallEventModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<CreateEventPage, SmallEventResponseModel>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<CreateEventPage, SmallEventModel>(this, "AddItem", async (obj, item) =>
             {
-                var newItem = item as SmallEventResponseModel;
+                var newItem = item as SmallEventModel;
                 Items.Add(newItem);
                 await DataStore.AddItemAsync(newItem);
             });

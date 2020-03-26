@@ -19,6 +19,10 @@ namespace Eventador.APP.V2.Droid
 
             base.OnCreate(savedInstanceState);
 
+            // Видос по попапам
+            // https://www.youtube.com/watch?time_continue=448&v=ziKr34qZxII&feature=emb_logo
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

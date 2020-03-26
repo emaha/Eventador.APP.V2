@@ -12,8 +12,7 @@ namespace Eventador.APP.V2.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<SmallEventResponseModel> DataStore => DependencyService.Get<IDataStore<SmallEventResponseModel>>();
-        public IEventadorApi EventadorApi => DependencyService.Get<IEventadorApi>();
+        public IDataStore<SmallEventModel> DataStore => DependencyService.Get<IDataStore<SmallEventModel>>();
 
         bool isBusy = false;
         public bool IsBusy

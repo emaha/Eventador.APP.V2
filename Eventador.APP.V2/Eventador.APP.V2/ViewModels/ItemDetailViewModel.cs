@@ -8,9 +8,8 @@ namespace Eventador.APP.V2.ViewModels
     {
         public bool isVis { get; set; }  = false;
 
-
-        public SmallEventResponseModel Item { get; set; }
-        public ItemDetailViewModel(SmallEventResponseModel item = null)
+        public SmallEventModel Item { get; set; }
+        public ItemDetailViewModel(SmallEventModel item = null)
         {
             Title = item?.Title;
             Item = item;

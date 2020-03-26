@@ -37,6 +37,9 @@ namespace Eventador.APP.V2.Views
                     case (int)MenuItemType.Friends:
 
                         break;
+                    case (int)MenuItemType.Profile:
+                        MenuPages.Add(id, new NavigationPage(new ProfilePage()));
+                        break;
                     case (int)MenuItemType.Logout:
                         MenuPages.Add(id, new NavigationPage(new LoginPage()));
                         SecureStorage.Remove("AccessToken");

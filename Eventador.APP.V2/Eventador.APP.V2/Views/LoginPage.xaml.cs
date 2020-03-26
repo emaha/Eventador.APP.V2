@@ -1,5 +1,5 @@
-﻿using Eventador.APP.V2.Requests;
-using Eventador.APP.V2.ResponseModels;
+﻿using Eventador.APP.V2.Models;
+using Eventador.APP.V2.Requests;
 using Eventador.APP.V2.Services;
 using System;
 using Xamarin.Essentials;
@@ -28,6 +28,8 @@ namespace Eventador.APP.V2.Views
             try
             {
                 token = await _eventadorApi.SignIn(request);
+
+                // TODO: у IOS  тут проблемы
                 await SecureStorage.SetAsync("AccessToken", token.AccessToken);
                 await SecureStorage.SetAsync("RefreshToken", token.RefreshToken);
                 await SecureStorage.SetAsync("Expires", token.Expires.ToString());
