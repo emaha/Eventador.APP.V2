@@ -1,4 +1,5 @@
 ﻿using Eventador.APP.V2.Models;
+using Eventador.APP.V2.Services;
 using Eventador.APP.V2.ViewModels;
 using System;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ namespace Eventador.APP.V2.Views
     [DesignTimeVisible(false)]
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        private ItemsViewModel viewModel;
 
         public ItemsPage()
         {
@@ -26,7 +27,7 @@ namespace Eventador.APP.V2.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item.Id)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -36,13 +37,14 @@ namespace Eventador.APP.V2.Views
         {
             await Navigation.PushModalAsync(new NavigationPage(new CreateEventPage()));
         }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0)
+            {
                 viewModel.LoadItemsCommand.Execute(null);
+            }
         }
     }
 }

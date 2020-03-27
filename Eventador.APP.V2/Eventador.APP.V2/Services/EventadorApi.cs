@@ -22,14 +22,14 @@ namespace Eventador.APP.V2.Services
         /// </summary>
         private static void Init()
         {
-            string authHeader = SecureStorage.GetAsync("AccessToken").Result;
+            string accessToken = SecureStorage.GetAsync("AccessToken").Result;
 
             var client = new HttpClient
             {
                 BaseAddress = new Uri(Constants.EventadorApiURL),
                 DefaultRequestHeaders =
                 {
-                    { "Authorization", $"Bearer {authHeader}" }
+                    { "Authorization", $"Bearer {accessToken}" }
                 }
             };
             eventadorApi = RestService.For<IEventadorApi>(client);
@@ -38,7 +38,7 @@ namespace Eventador.APP.V2.Services
         /// <summary>
         /// Обновить заголовок Refit с новым токеном
         /// </summary>
-        public static void RefreshToken()
+        public static void RefreshHttpClient()
         {
             Init();
         }
@@ -49,6 +49,7 @@ namespace Eventador.APP.V2.Services
         /// <returns></returns>
         public static IEventadorApi ResolveApi()
         {
+            // TODO: Херня полная. Придумать как прикрутить нормальный DI
             return eventadorApi;
         }
     }

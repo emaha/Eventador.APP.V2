@@ -1,5 +1,6 @@
 ﻿using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Requests;
+using Polly;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,7 +58,18 @@ namespace Eventador.APP.V2.Services
 
         public async Task<IEnumerable<SmallEventModel>> GetItemsAsync(bool forceRefresh = false)
         {
-            var events = await _eventadorApi.GetEventsByRegion(1);
+            return await _eventadorApi.GetEventsByRegion(1);
+
+            SmallEventModel[] events = null;
+            var result = await Policy
+              .Handle<Refit.ApiException>()
+              .Or<Refit.ValidationApiException>()
+              .Retry()
+              .Execute(async () => {
+                  return await _eventadorApi.GetEventsByRegion(1);
+              });
+
+            if (result != null) events = result;
 
             return events;
         }

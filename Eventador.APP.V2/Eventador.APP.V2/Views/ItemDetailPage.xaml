@@ -14,6 +14,15 @@
             <Label Text="Description:" FontSize="Medium" />
             <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
             <Image Source="event1.jpg"/>
+            <Label Text="{Binding Item.StartDate}"/>
+            <Label Text="{Binding Item.Price}"/>
+            <Label Text="{Binding Item.EventType}"/>
+            <Label Text="{Binding Item.AccessType}"/>
+            <Label Text="{Binding Item.AuthorId}"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Item.Lat}"/>
+                <Label Text="{Binding Item.Lon}"/>
+            </StackLayout>
             <StackLayout Orientation="Horizontal" Spacing="10">
                 <Button Text="GetIn" Clicked="GetInButton_Clicked"/>
                 <Button Text="Chat" Clicked="ChatButton_Clicked"/>

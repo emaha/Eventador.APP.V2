@@ -16,6 +16,7 @@ namespace Eventador.APP.V2
             InitializeComponent();
 
             DependencyService.Register<EventDataStore>();
+            DependencyService.Register<AuthService>();
             
             CheckToken();
         }

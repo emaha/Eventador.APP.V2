@@ -24,7 +24,15 @@ namespace Eventador.APP.V2.Services
         /// <returns></returns>
         [Post("/Auth/SignOut")]
         Task SignOut();
-        
+
+        /// <summary>
+        /// Обновить токен
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Post("/Auth/RefreshToken")]
+        Task<TokenModel> RefreshToken(RefreshTokenRequest request);
+
         #endregion
 
         #region Users
@@ -50,7 +58,7 @@ namespace Eventador.APP.V2.Services
         /// </summary>
         /// <returns></returns>
         [Get("/Events/{id}")]
-        Task<EventResponseModel> GetEventById(long id);
+        Task<EventModel> GetEventById(long id);
 
         /// <summary>
         /// Получение событий по региону

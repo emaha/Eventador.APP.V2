@@ -11,11 +11,11 @@ namespace Eventador.APP.V2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        private IEventadorApi _eventadorApi;
+        private IAuthService _authService;
 
         public LoginPage()
         {
-            _eventadorApi = EventadorApi.ResolveApi();
+            _authService = DependencyService.Resolve<AuthService>();
             InitializeComponent();
 
             LogInButton.Clicked += LogInButton_Click;
@@ -24,24 +24,16 @@ namespace Eventador.APP.V2.Views
         private async void LogInButton_Click(object sender, EventArgs e)
         {
             var request = new CredentialsRequest(Email.Text, Password.Text);
-            TokenModel token;
             try
             {
-                token = await _eventadorApi.SignIn(request);
-
-                // TODO: у IOS  тут проблемы
-                await SecureStorage.SetAsync("AccessToken", token.AccessToken);
-                await SecureStorage.SetAsync("RefreshToken", token.RefreshToken);
-                await SecureStorage.SetAsync("Expires", token.Expires.ToString());
-
-                EventadorApi.RefreshToken();
-
+                _authService.SignIn(request);
                 Application.Current.MainPage = new MainPage();
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Log In", $"Something went wrong.\n{ex}", "Ok");
             }
+            
         }
     }
 }
