@@ -14,6 +14,7 @@
             <Label Text="Description:" FontSize="Medium" />
             <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
             <Image Source="event1.jpg"/>
+            <Label Text="{Binding Item.Status}"/>
             <Label Text="{Binding Item.StartDate}"/>
             <Label Text="{Binding Item.Price}"/>
             <Label Text="{Binding Item.EventType}"/>
@@ -27,10 +28,10 @@
                 <Button Text="GetIn" Clicked="GetInButton_Clicked"/>
                 <Button Text="Chat" Clicked="ChatButton_Clicked"/>
             </StackLayout>
-            <Button Text="Finish event" HorizontalOptions="CenterAndExpand" Clicked="FinishButton_Clicked">
+            <Button Text="Finish event" HorizontalOptions="CenterAndExpand" Command="{Binding FinishCommand}">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
-                                 Binding="{Binding isVis}"
+                                 Binding="{Binding isAuthor}"
                                  Value="false">
                         <Setter Property="IsVisible" Value="False"/>
                         <Setter Property="BackgroundColor"  Value="Red" />

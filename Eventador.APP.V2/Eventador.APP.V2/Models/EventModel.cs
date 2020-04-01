@@ -36,12 +36,12 @@ namespace Eventador.APP.V2.Models
         /// <summary>
         /// Id категорий к которым  относится событие
         /// </summary>
-        public EventType EventType { get; set; }
+        public EventType Type { get; set; }
 
         /// <summary>
         /// Статус события
         /// </summary>
-        public EventStatus EventStatus { get; set; }
+        public EventStatus Status { get; set; }
 
         /// <summary>
         /// Дата начала

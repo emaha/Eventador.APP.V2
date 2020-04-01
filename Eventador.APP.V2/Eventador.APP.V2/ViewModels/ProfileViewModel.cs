@@ -1,38 +1,47 @@
-﻿namespace Eventador.APP.V2.ViewModels
+﻿using Eventador.APP.V2.Models;
+using Eventador.APP.V2.Services;
+using System;
+using System.ComponentModel;
+using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace Eventador.APP.V2.ViewModels
 {
-    public class ProfileViewModel
+    public class ProfileViewModel : INotifyPropertyChanged
     {
+        private IEventadorApi _eventadorApi;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public long UserId { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string FullName { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string ContactPhone { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public float Rating { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>
-        /// О себе
-        /// </summary>
-        public string Bio { get; set; }
+        public ICommand Command { get; set; }
+        public UserModel UserModel { get; set; }
+        public double Rating { get; set; }
 
         public ProfileViewModel()
         {
+            _eventadorApi = EventadorApi.ResolveApi();
+            GetUserInfo();
+            Rating = new Random().NextDouble() * 5f;
 
+            Command = new Command(TestCommand);
         }
 
+        protected virtual void OnPropertyChanged(string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void TestCommand()
+        {
+            UserModel.Id++;
+            Rating += 0.1f;
+            OnPropertyChanged();
+        }
+
+        private void GetUserInfo()
+        {
+            UserModel = _eventadorApi.GetUserByToken().Result;
+        }
 
     }
 }

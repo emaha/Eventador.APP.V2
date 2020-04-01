@@ -60,18 +60,18 @@ namespace Eventador.APP.V2.Services
         {
             return await _eventadorApi.GetEventsByRegion(1);
 
-            SmallEventModel[] events = null;
-            var result = await Policy
-              .Handle<Refit.ApiException>()
-              .Or<Refit.ValidationApiException>()
-              .Retry()
-              .Execute(async () => {
-                  return await _eventadorApi.GetEventsByRegion(1);
-              });
+            //SmallEventModel[] events = null;
+            //var result = await Policy
+            //  .Handle<Refit.ApiException>()
+            //  .Or<Refit.ValidationApiException>()
+            //  .Retry()
+            //  .Execute(async () => {
+            //      return await _eventadorApi.GetEventsByRegion(1);
+            //  });
 
-            if (result != null) events = result;
+            //if (result != null) events = result;
 
-            return events;
+            //return events;
         }
     }
 }

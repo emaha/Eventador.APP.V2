@@ -33,15 +33,31 @@ namespace Eventador.APP.V2.Services
         [Post("/Auth/RefreshToken")]
         Task<TokenModel> RefreshToken(RefreshTokenRequest request);
 
+
         #endregion
 
         #region Users
+        /// <summary>
+        /// Регистрация 
+        /// </summary>
+        /// <param name="request">Запрос на регистрацию</param>
+        /// <returns></returns>
+        [Post("/Users/SignUp")]
+        Task SignUp(CredentialsRequest request);
+
+        /// <summary>
+        /// Получить данные пользователя по токену
+        /// </summary>
+        /// <returns></returns>
+        [Get("/Users/Token")]
+        Task<UserModel> GetUserByToken();
+
         /// <summary>
         /// Полуение пользователей
         /// </summary>
         /// <returns></returns>
         [Get("/Users")]
-        Task<UserResponseModel> GetUser();
+        Task<UserModel> GetUser();
 
         /// <summary>
         /// Создать пользователя
@@ -98,7 +114,7 @@ namespace Eventador.APP.V2.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Post("/Events/Finish/{id}")]
+        [Post("/Events/{id}/Finish")]
         Task FinishEvent(long id);
 
         /// <summary>
@@ -106,7 +122,7 @@ namespace Eventador.APP.V2.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Post("/Events/CheckIn/{id}")]
+        [Post("/Events/{id}/CheckIn")]
         Task CheckIn(long id);
 
         /// <summary>
@@ -114,7 +130,7 @@ namespace Eventador.APP.V2.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Post("/Events/CheckOut/{id}")]
+        [Post("/Events/{id}/CheckOut")]
         Task CheckOut(long id);
 
         #endregion

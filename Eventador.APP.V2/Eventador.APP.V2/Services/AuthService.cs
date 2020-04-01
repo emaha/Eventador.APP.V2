@@ -1,5 +1,6 @@
 ﻿using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Requests;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace Eventador.APP.V2.Services
@@ -13,7 +14,7 @@ namespace Eventador.APP.V2.Services
             _eventadorApi = EventadorApi.ResolveApi();
         }
 
-        public async void RefreshToken()
+        public async Task RefreshToken()
         {
             var request = new RefreshTokenRequest
             {
@@ -21,33 +22,30 @@ namespace Eventador.APP.V2.Services
             };
 
             var token = await _eventadorApi.RefreshToken(request);
-            SaveTokenToStorage(token);
+            await SaveTokenToStorage(token);
         }
 
-        private async void SaveTokenToStorage(TokenModel token)
+        private async Task SaveTokenToStorage(TokenModel token)
         {
             // TODO: у IOS  тут проблемы
             await SecureStorage.SetAsync("AccessToken", token.AccessToken);
             await SecureStorage.SetAsync("RefreshToken", token.RefreshToken);
             await SecureStorage.SetAsync("Expires", token.Expires.ToString());
-
-            EventadorApi.RefreshHttpClient();
         }
 
         public void DeleteCredentials()
         {
+            SecureStorage.Remove("UserId");
             SecureStorage.Remove("AccessToken");
             SecureStorage.Remove("RefreshToken");
             SecureStorage.Remove("Expires");
-
-            EventadorApi.RefreshHttpClient();
         }
 
-        public async void SignIn(CredentialsRequest request)
+        public async Task SignIn(CredentialsRequest request)
         {
             var token = await _eventadorApi.SignIn(request);
 
-            SaveTokenToStorage(token);
+            await SaveTokenToStorage(token);
         }
 
         public async void SignOut()

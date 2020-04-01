@@ -5,20 +5,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Eventador.APP.V2.Views.ProfilePage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Clicked="ToolbarEdit_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <StackLayout Orientation="Horizontal">
-                <Label Text="asdasd"/>
-                <BoxView Color="Blue" AbsoluteLayout.LayoutBounds=".4, .8, .2, .2" AbsoluteLayout.LayoutFlags="All" />
+                <Label Text="ID: "/>
+                <Label Text="{Binding UserModel.Id}"/>
+                <BoxView HorizontalOptions="EndAndExpand" 
+                         Color="Red" 
+                         AbsoluteLayout.LayoutBounds=".4, .8, .2, .2" 
+                         AbsoluteLayout.LayoutFlags="All" 
+                         Margin="20,20,20,20"
+                         />
             </StackLayout>
-            <Label Text="Profile Page" />
-            <Label Text="Profile Page" />
-            <Label Text="Profile Page" />
-            <Label Text="Profile Page" />
-            <Label Text="Profile Page" />
-            <Label Text="Profile Page" />
-            <Label Text="Profile Page" />
-            <Label Text="Profile Page" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Full Name: "/>
+                <Label Text="{Binding UserModel.FullName}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Contact phone: "/>
+                <Label Text="{Binding UserModel.Phone}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Rating: "/>
+                <Label Text="{Binding Rating}" />
+            </StackLayout>
+            <Label Text="About: " />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

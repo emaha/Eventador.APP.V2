@@ -1,15 +1,15 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Eventador.APP.V2.Services;
+﻿using Eventador.APP.V2.Services;
 using Eventador.APP.V2.Views;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
-
+using Xamarin.Forms;
 
 namespace Eventador.APP.V2
 {
     public partial class App : Application
     {
+        private readonly IAuthService _authService;
 
         public App()
         {
@@ -17,22 +17,45 @@ namespace Eventador.APP.V2
 
             DependencyService.Register<EventDataStore>();
             DependencyService.Register<AuthService>();
-            
-            CheckToken();
+
+            _authService = DependencyService.Resolve<AuthService>();
+
+            MainPage = GetStartPage();
         }
 
-        private async void CheckToken()
+        private Page GetStartPage()
         {
-            var token = await SecureStorage.GetAsync("AccessToken");
-            if(!string.IsNullOrWhiteSpace(token))
+            long timeForRefreshToken = 8 * 60 * 60;
+
+            var token = SecureStorage.GetAsync("AccessToken").Result;
+            if (string.IsNullOrWhiteSpace(token))
             {
-                MainPage = new MainPage();
+                return new LoginPage();
             }
             else
             {
-                MainPage = new LoginPage();
-            }
+                var expireString = SecureStorage.GetAsync("Expires").Result;
+                if (!string.IsNullOrWhiteSpace(expireString))
+                {
+                    var expire = long.Parse(expireString);
+                    long unixTime = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();
 
+                    if (expire - unixTime < timeForRefreshToken)
+                    {
+                        try
+                        {
+                            _authService.RefreshToken();
+                        }
+                        catch (Exception)
+                        {
+                            _authService.DeleteCredentials();
+                            return new LoginPage();
+                        }
+                    }
+                }
+
+                return new MainPage();
+            }
         }
 
         protected override void OnStart()

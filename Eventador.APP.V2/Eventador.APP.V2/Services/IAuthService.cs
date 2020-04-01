@@ -1,4 +1,5 @@
 ﻿using Eventador.APP.V2.Requests;
+using System.Threading.Tasks;
 
 namespace Eventador.APP.V2.Services
 {
@@ -8,7 +9,7 @@ namespace Eventador.APP.V2.Services
         /// Авторизация
         /// </summary>
         /// <param name="request"></param>
-        void SignIn(CredentialsRequest request);
+        Task SignIn(CredentialsRequest request);
         
         /// <summary>
         /// Выход
@@ -18,7 +19,7 @@ namespace Eventador.APP.V2.Services
         /// <summary>
         /// Обновление токена
         /// </summary>
-        void RefreshToken();
+        Task RefreshToken();
 
         /// <summary>
         /// Удаление ключей

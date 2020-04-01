@@ -30,7 +30,7 @@ namespace Eventador.APP.V2.ViewModels
             });
         }
 
-        async Task ExecuteLoadItemsCommand()
+        private async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
                 return;
@@ -46,21 +46,9 @@ namespace Eventador.APP.V2.ViewModels
                     Items.Add(item);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                _authService.DeleteCredentials();
-                Application.Current.MainPage = new LoginPage();
-
-                //try
-                //{
-                //    _authService.RefreshToken();
-                //}
-                //catch (Exception)
-                //{
-                //    _authService.DeleteCredentials();
-                //    Application.Current.MainPage = new LoginPage();
-                //}
+                
             }
             finally
             {

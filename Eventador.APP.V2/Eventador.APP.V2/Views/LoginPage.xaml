@@ -45,7 +45,6 @@
                 <Entry Grid.Row="1" x:Name="Email" Placeholder="Email or Phone Number" PlaceholderColor="#bababa" FontSize="16"/>
                 <Entry Grid.Row="2" x:Name="Password" Placeholder="Password" PlaceholderColor="#bababa" FontSize="16" IsPassword="True"/>
                 <Button x:Name="LogInButton" Grid.Row="3" Text="Log In" BackgroundColor="#3897F0" TextColor="White" HeightRequest="50" VerticalOptions="StartAndExpand"/>
-                <Label Text="LogInTrouble ? Get help singing in." HorizontalOptions="Center" Grid.Row="4" Margin="10,0,10,0"/>
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -56,14 +55,21 @@
                     <Label Text="OR" Grid.Column="1" VerticalOptions="Center" Margin="10,0,10,0"/>
                     <Label BackgroundColor="#bababa" Grid.Column="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
                 </Grid>
-                <StackLayout Orientation="Horizontal" Grid.Row="6" HorizontalOptions="Center">
-                    <Image Source="facebook_icon" WidthRequest="20" HeightRequest="20"/>
-                    <Label Text="Log in with Facebook" TextColor="#485992"/>
-                </StackLayout>
+                <Button Text="Log in with Facebook" Grid.Row="6" BackgroundColor="#485992" TextColor="White" 
+                    HeightRequest="50" VerticalOptions="StartAndExpand"/>
+                <Button Text="Log in with Google" Grid.Row="7" BackgroundColor="#F03807" TextColor="White" 
+                    HeightRequest="50" VerticalOptions="StartAndExpand"/>
+                
             </Grid>
             <StackLayout Grid.Row="2" BackgroundColor="White" >
                 <Label HeightRequest="1" BackgroundColor="#E3E3E3"/>
-                <Label Text="Don't have an account? Sign up." VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                <Button x:Name="SignUpButton" 
+                        Clicked="SignUpButton_Clicked"
+                        Text="Don't have an account? Sign up"
+                        BackgroundColor="#F03807" TextColor="White" 
+                        HeightRequest="50" VerticalOptions="StartAndExpand"
+                        Margin="20,0,20,0"
+                        />
             </StackLayout>
             
         </Grid>

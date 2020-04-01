@@ -26,7 +26,7 @@ namespace Eventador.APP.V2.Views
             var request = new CredentialsRequest(Email.Text, Password.Text);
             try
             {
-                _authService.SignIn(request);
+                await _authService.SignIn(request);
                 Application.Current.MainPage = new MainPage();
             }
             catch (Exception ex)
@@ -34,6 +34,12 @@ namespace Eventador.APP.V2.Views
                 await DisplayAlert("Log In", $"Something went wrong.\n{ex}", "Ok");
             }
             
+        }
+
+        private async void SignUpButton_Clicked(object sender, EventArgs e)
+        {
+            //Application.Current.MainPage = new RegisterPage();
+            await Navigation.PushModalAsync(new NavigationPage(new RegisterPage()));
         }
     }
 }

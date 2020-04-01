@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Services\IAuthService.cs~RF14ef225a.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Polly" Version="7.2.0" />
     <PackageReference Include="refit" Version="5.0.23" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
@@ -48,6 +52,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
