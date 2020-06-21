@@ -12,10 +12,15 @@ namespace Eventador.APP.V2.Views
         {
             InitializeComponent();
             BindingContext = new RegisterViewModel();
-            MessagingCenter.Subscribe<RegisterViewModel>(this, "SignUp", async (sender) => 
+            MessagingCenter.Subscribe<RegisterViewModel>(this, "SignUpSuccess", async (sender) => 
             {
                 await DisplayAlert("Registration", "Success", "Ok");
                 await Navigation.PopModalAsync();
+            });
+
+            MessagingCenter.Subscribe<RegisterViewModel>(this, "SignUpError", async (sender) =>
+            {
+                await DisplayAlert("Registration", "Login already exist", "Ok");
             });
         }
     }

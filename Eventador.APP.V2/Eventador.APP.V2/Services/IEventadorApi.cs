@@ -106,7 +106,7 @@ namespace Eventador.APP.V2.Services
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [Put("/Events)")]
+        [Put("/Events")]
         Task UpdateEvent(EventUpdateRequest request);
 
         /// <summary>

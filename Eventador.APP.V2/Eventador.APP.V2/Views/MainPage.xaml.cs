@@ -50,7 +50,7 @@ namespace Eventador.APP.V2.Views
                 switch (id)
                 {
                     case (int)MenuItemType.BrowseEvents:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        MenuPages.Add(id, new NavigationPage(new BrowseEventsPage()));
                         break;
                     case (int)MenuItemType.MyEvents:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));

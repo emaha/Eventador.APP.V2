@@ -22,7 +22,7 @@ namespace Eventador.APP.V2.ViewModels
         }
 
         string title = string.Empty;
-        public string Title
+        public string PageTitle
         {
             get { return title; }
             set { SetProperty(ref title, value); }
@@ -41,7 +41,6 @@ namespace Eventador.APP.V2.ViewModels
             return true;
         }
 
-        #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
@@ -51,6 +50,5 @@ namespace Eventador.APP.V2.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

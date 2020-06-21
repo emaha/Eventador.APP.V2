@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Eventador.APP.V2.ViewModels
 {
-    public class ItemDetailViewModel : INotifyPropertyChanged
+    public class EventDetailsViewModel : INotifyPropertyChanged
     {
         private IEventadorApi _eventadorApi;
 
@@ -24,14 +24,13 @@ namespace Eventador.APP.V2.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ItemDetailViewModel(long id)
+        public EventDetailsViewModel(long id)
         {
             _eventadorApi = EventadorApi.ResolveApi();
-            var evnt = _eventadorApi.GetEventById(id).Result;
-            Item = evnt;
+            Item = _eventadorApi.GetEventById(id).Result;
 
             var userId = long.Parse(SecureStorage.GetAsync("UserId").Result);
-            isAuthor = evnt.AuthorId == userId;
+            isAuthor = Item.AuthorId == userId;
 
             Title = $"[{Item.Id}]";
         }

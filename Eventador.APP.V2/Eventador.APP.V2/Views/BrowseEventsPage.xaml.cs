@@ -1,5 +1,4 @@
 ﻿using Eventador.APP.V2.Models;
-using Eventador.APP.V2.Services;
 using Eventador.APP.V2.ViewModels;
 using System;
 using System.ComponentModel;
@@ -7,18 +6,16 @@ using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Views
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class ItemsPage : ContentPage
+    public partial class BrowseEventsPage : ContentPage
     {
-        private ItemsViewModel viewModel;
+        private BrowseEventsViewModel viewModel;
 
-        public ItemsPage()
+        public BrowseEventsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new BrowseEventsViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -27,7 +24,7 @@ namespace Eventador.APP.V2.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item.Id)));
+            await Navigation.PushAsync(new EventDetailsPage(new EventDetailsViewModel(item.Id)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;

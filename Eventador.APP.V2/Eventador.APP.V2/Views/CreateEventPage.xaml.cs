@@ -38,12 +38,12 @@ namespace Eventador.APP.V2.Views
             {
                 Title = Item.Title,
                 Description = Item.Description,
-                StartDate = Item.StartDate,
+                StartDate = Item.StartDate + Item.SelectedTime,
                 SelectedAccessType = Item.SelectedAccessType,
                 SelectedEventType = Item.SelectedEventType
             };
 
-            MessagingCenter.Send(this, "AddItem", smallModel);
+            MessagingCenter.Send(this, "AddEvent", smallModel);
             await Navigation.PopModalAsync();
         }
 
@@ -72,6 +72,10 @@ namespace Eventador.APP.V2.Views
                 // Item.AccessType = picker.
             }
             header.Text = $"Выберите тип доступа: ({accessTypePicker.SelectedIndex}) - {accessTypePicker.Items[accessTypePicker.SelectedIndex]} ";
+        }
+
+        private void TimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
         }
     }
 }

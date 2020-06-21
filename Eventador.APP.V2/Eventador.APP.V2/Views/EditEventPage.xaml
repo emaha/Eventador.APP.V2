@@ -5,11 +5,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Eventador.APP.V2.Views.EditEventPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Edit Event Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="{Binding Title, Mode=TwoWay}"/>
+            <Entry Placeholder="Event Title" Text="{Binding Title, Mode=TwoWay}" d:Text="Item name" FontSize="Small" />
+            <Editor Placeholder="Description" Text="{Binding Description, Mode=TwoWay}" d:Text="Item description" FontSize="Small" Margin="0" />
+
+            <Label Text="Выбери тип события"/>
+            <Picker x:Name="eventTypePicker" ItemsSource="{Binding EventTypes, Mode=TwoWay}" 
+                    SelectedItem="{Binding SelectedEventType, Mode=TwoWay}"
+                    SelectedIndexChanged="eventTypePicker_SelectedIndexChanged"/>
+
+            <Label x:Name="header" Text="Выберите тип доступа" FontSize="Medium"/>
+            <Picker x:Name="accessTypePicker" ItemsSource="{Binding AccessTypes, Mode=TwoWay}" 
+                    SelectedItem="{Binding SelectedAccessType, Mode=TwoWay}"
+                    SelectedIndexChanged="accessTypePicker_SelectedIndexChanged"/>
+            <Label Text="Выберите дату" FontSize="Medium" />
+
+            <DatePicker Date="{Binding StartDate, Mode=TwoWay}" Format="D" DateSelected="datePicker_DateSelected">
+                <DatePicker.MinimumDate>1/01/2020</DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>1/01/2050</DatePicker.MaximumDate>
+            </DatePicker>
+            <TimePicker Time="{Binding SelectedTime, Mode=TwoWay}"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

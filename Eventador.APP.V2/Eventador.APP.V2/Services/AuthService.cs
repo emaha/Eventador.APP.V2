@@ -24,7 +24,7 @@ namespace Eventador.APP.V2.Services
             var token = await _eventadorApi.RefreshToken(request);
             await SaveTokenToStorage(token);
         }
-
+        
         private async Task SaveTokenToStorage(TokenModel token)
         {
             // TODO: у IOS  тут проблемы

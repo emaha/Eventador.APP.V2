@@ -4,27 +4,36 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Eventador.APP.V2.Views.ItemDetailPage"
+             x:Class="Eventador.APP.V2.Views.EventDetailsPage"
              Title="{Binding Title}">
-    
+
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Text:" FontSize="Medium" />
-            <Label Text="{Binding Item.Title}" d:Text="Item name" FontSize="Small"/>
-            <Label Text="Description:" FontSize="Medium" />
+            <Label Text="{Binding Item.Title}" d:Text="Item name" FontSize="Large"/>
             <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
             <Image Source="event1.jpg"/>
-            <Label Text="{Binding Item.Status}"/>
-            <Label Text="{Binding Item.StartDate}"/>
-            <Label Text="{Binding Item.Price}"/>
-            <Label Text="{Binding Item.EventType}"/>
-            <Label Text="{Binding Item.AccessType}"/>
-            <Label Text="{Binding Item.AuthorId}"/>
+            <Label Text="{Binding Item.Status}" d:Text="Status"/>
+            <Label Text="{Binding Item.StartDate}" d:Text="StartDate"/>
+            <Label Text="{Binding Item.Price}" d:Text="Price"/>
+            <Label Text="{Binding Item.Type}" d:Text="EventType"/>
+            <Label Text="{Binding Item.AccessType}" d:Text="AccessType"/>
+            <Label Text="{Binding Item.AuthorId}" d:Text="AuthorId"/>
             <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding Item.Lat}"/>
-                <Label Text="{Binding Item.Lon}"/>
+                <Label Text="{Binding Item.Lat}" d:Text="Lat"/>
+                <Label Text="{Binding Item.Lon}" d:Text="Lon"/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="10">
+
+            <Button Text="Edit Event" HorizontalOptions="CenterAndExpand" Clicked="EditButton_Clicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding isAuthor}"
+                                 Value="false">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
                 <Button Text="GetIn" Clicked="GetInButton_Clicked"/>
                 <Button Text="Chat" Clicked="ChatButton_Clicked"/>
             </StackLayout>
@@ -34,7 +43,6 @@
                                  Binding="{Binding isAuthor}"
                                  Value="false">
                         <Setter Property="IsVisible" Value="False"/>
-                        <Setter Property="BackgroundColor"  Value="Red" />
                     </DataTrigger>
                 </Button.Triggers>
             </Button>

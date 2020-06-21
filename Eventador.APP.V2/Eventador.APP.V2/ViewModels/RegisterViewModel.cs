@@ -32,9 +32,17 @@ namespace Eventador.APP.V2.ViewModels
         private async Task SignUp()
         {
             var request = new CredentialsRequest(Username, Password);
-            await _eventadorApi.SignUp(request);
+            try
+            {
+                await _eventadorApi.SignUp(request);
+            }
+            catch(Refit.ApiException)
+            {
+                MessagingCenter.Send(this, "SignUpError");
+                return;
+            }
 
-            MessagingCenter.Send<RegisterViewModel>(this, "SignUp");
+            MessagingCenter.Send(this, "SignUpSuccess");
         }
     }
 }

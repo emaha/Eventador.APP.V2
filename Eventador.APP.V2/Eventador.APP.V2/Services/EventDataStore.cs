@@ -40,6 +40,9 @@ namespace Eventador.APP.V2.Services
             items.Remove(oldItem);
             items.Add(item);
 
+            EventUpdateRequest request = EventUpdateRequest.Create(item);
+            await _eventadorApi.UpdateEvent(request);
+
             return await Task.FromResult(true);
         }
 

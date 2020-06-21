@@ -1,18 +1,18 @@
 ﻿using Eventador.APP.V2.Types;
 using System;
 
-namespace Eventador.APP.V2.Models
+namespace Eventador.APP.V2.ViewModels
 {
     /// <summary>
-    /// Упрощенная модель событий для общего списка
+    /// Модель-представление для редактирования события 
     /// </summary>
-    public class SmallEventModel
+    public class EditEventViewModel : BaseViewModel
     {
         /// <summary>
-        /// ID
+        /// Id
         /// </summary>
         public long Id { get; set; }
-        
+
         /// <summary>
         /// Заголовок
         /// </summary>
@@ -30,29 +30,33 @@ namespace Eventador.APP.V2.Models
         public DateTime StartDate { get; set; }
 
         /// <summary>
-        /// Дата завершения
+        /// Выбранное время
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public TimeSpan SelectedTime { get; set; }
 
         /// <summary>
-        /// Тип доступа
+        /// Список типов доступа
+        /// </summary>
+        public AccessType AccessType { get; set; }
+
+        /// <summary>
+        /// Выбранный тип доступа
         /// </summary>
         public AccessType SelectedAccessType { get; set; }
 
         /// <summary>
-        /// Тип события
+        /// Список типов событий
+        /// </summary>
+        public EventType Type { get; set; }
+
+        /// <summary>
+        /// Выбранный тип события // TODO: в будущем предусмотреть множественный выбор 
         /// </summary>
         public EventType SelectedEventType { get; set; }
 
         /// <summary>
-        /// ID автора
-        /// </summary>
-        public long AuthorId { get; set; }
-
-        /// <summary>
-        /// Стоимость входа
+        /// Цена участия
         /// </summary>
         public decimal Price { get; set; }
-
     }
 }

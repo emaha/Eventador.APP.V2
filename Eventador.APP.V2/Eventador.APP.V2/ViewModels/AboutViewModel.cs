@@ -9,7 +9,7 @@ namespace Eventador.APP.V2.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            PageTitle = "About";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://xamarin.com"));
         }
 

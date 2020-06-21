@@ -35,6 +35,8 @@
                 <Label Text="{Binding Rating}" />
             </StackLayout>
             <Label Text="About: " />
+            
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -31,6 +31,11 @@ namespace Eventador.APP.V2.ViewModels
         public DateTime StartDate { get; set; }
 
         /// <summary>
+        /// Выбранное время
+        /// </summary>
+        public TimeSpan SelectedTime { get; set; } = new TimeSpan(12, 10, 20);
+
+        /// <summary>
         /// Список типов доступа
         /// </summary>
         public List<AccessType> AccessTypes { get; set; } 
