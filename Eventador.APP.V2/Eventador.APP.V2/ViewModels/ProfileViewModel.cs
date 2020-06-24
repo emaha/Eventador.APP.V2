@@ -15,13 +15,12 @@ namespace Eventador.APP.V2.ViewModels
 
         public ICommand Command { get; set; }
         public UserModel UserModel { get; set; }
-        public double Rating { get; set; }
+
 
         public ProfileViewModel()
         {
             _eventadorApi = EventadorApi.ResolveApi();
             GetUserInfo();
-            Rating = new Random().NextDouble() * 5f;
 
             Command = new Command(TestCommand);
         }
@@ -34,13 +33,14 @@ namespace Eventador.APP.V2.ViewModels
         private void TestCommand()
         {
             UserModel.Id++;
-            Rating += 0.1f;
             OnPropertyChanged();
         }
 
         private void GetUserInfo()
         {
             UserModel = _eventadorApi.GetUserByToken().Result;
+            UserModel.Rating = new Random().NextDouble() * 5f;
+            UserModel.Info = "Info text";
         }
 
     }

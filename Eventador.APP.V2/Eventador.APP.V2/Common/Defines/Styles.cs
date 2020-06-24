@@ -12,7 +12,7 @@ namespace Eventador.APP.V2.Common.Defines
 			var buttonStyle = new Style (typeof(Button)) {
 				Setters = {
 					new Setter { Property = Button.BackgroundColorProperty, Value = Colors.ButtonBackgroundColor },
-					new Setter { Property = Button.BorderRadiusProperty, Value = 0 },
+					new Setter { Property = Button.CornerRadiusProperty, Value = 0 },
 					new Setter { Property = Button.BorderWidthProperty, Value = 0 },
 					new Setter { Property = Button.FontAttributesProperty, Value = FontAttributes.None },
 					new Setter { Property = Button.FontFamilyProperty, Value = "HelveticaNeue-Thin" },

@@ -60,14 +60,17 @@ namespace Eventador.APP.V2
 
         protected override void OnStart()
         {
+            // Метод OnStart вызывается при запуске приложения.
         }
 
         protected override void OnSleep()
         {
+            // Метод OnSleep вызывается когда приложение переводится в фоновый режим.
         }
 
         protected override void OnResume()
         {
+            // Метод OnResume вызывается при выходе из фонового режима.
         }
     }
 }

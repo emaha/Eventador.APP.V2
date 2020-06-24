@@ -15,11 +15,11 @@
             <StackLayout Orientation="Horizontal">
                 <Label Text="ID: "/>
                 <Label Text="{Binding UserModel.Id}"/>
-                <BoxView HorizontalOptions="EndAndExpand" 
+                <BoxView HorizontalOptions="CenterAndExpand" 
                          Color="Red" 
-                         AbsoluteLayout.LayoutBounds=".4, .8, .2, .2" 
+                          AbsoluteLayout.LayoutBounds=".4, .8, .2, .2" 
                          AbsoluteLayout.LayoutFlags="All" 
-                         Margin="20,20,20,20"
+                         Margin="0,20,20,20"
                          />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
@@ -32,9 +32,13 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Rating: "/>
-                <Label Text="{Binding Rating}" />
+                <Label Text="{Binding UserModel.Rating}" />
             </StackLayout>
-            <Label Text="About: " />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="About: " />
+                <Label Text="{Binding UserModel.Info}" />
+            </StackLayout>
+            
             
             
         </StackLayout>

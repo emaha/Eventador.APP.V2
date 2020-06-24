@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Services;
+using System.Diagnostics;
 
 namespace Eventador.APP.V2.ViewModels
 {

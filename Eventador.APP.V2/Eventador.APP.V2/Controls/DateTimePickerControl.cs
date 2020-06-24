@@ -38,7 +38,7 @@ namespace Eventador.APP.V2.Controls
             }
         }
         #region Value 
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create<DateTimeControl, DateTime>(p => p.Value, default(DateTime)); 
+        public static readonly BindableProperty ValueProperty = BindableProperty.Create<DateTimeControl, DateTime>(p => p.Value, default); 
         public DateTime Value 
         { 
             get 

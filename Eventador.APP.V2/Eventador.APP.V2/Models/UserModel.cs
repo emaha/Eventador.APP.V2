@@ -35,5 +35,15 @@
         /// Полное имя
         /// </summary>
         public string FullName => $"{Lastname} {Firstname} {Middlename}";
+
+        /// <summary>
+        /// Рейтинг
+        /// </summary>
+        public double Rating { get; set; }
+
+        /// <summary>
+        /// Информация
+        /// </summary>
+        public string Info { get; set; }
     }
 }

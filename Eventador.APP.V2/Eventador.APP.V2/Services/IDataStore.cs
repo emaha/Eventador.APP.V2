@@ -36,8 +36,7 @@ namespace Eventador.APP.V2.Services
         /// <summary>
         /// Получить список событий
         /// </summary>
-        /// <param name="forceRefresh"></param>
         /// <returns></returns>
-        Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        Task<IEnumerable<T>> GetItemsAsync();
     }
 }

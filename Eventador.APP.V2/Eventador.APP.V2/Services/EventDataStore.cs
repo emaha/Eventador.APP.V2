@@ -59,22 +59,20 @@ namespace Eventador.APP.V2.Services
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<SmallEventModel>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<SmallEventModel>> GetItemsAsync()
         {
-            return await _eventadorApi.GetEventsByRegion(1);
+            //return await _eventadorApi.GetEventsByRegion(1);
 
-            //SmallEventModel[] events = null;
-            //var result = await Policy
-            //  .Handle<Refit.ApiException>()
-            //  .Or<Refit.ValidationApiException>()
-            //  .Retry()
-            //  .Execute(async () => {
-            //      return await _eventadorApi.GetEventsByRegion(1);
-            //  });
+            var result = await Policy
+              .Handle<Refit.ApiException>()
+              .Or<Refit.ValidationApiException>()
+              .Retry()
+              .Execute(async () =>
+              {
+                  return await _eventadorApi.GetEventsByRegion(1);
+              });
 
-            //if (result != null) events = result;
-
-            //return events;
+            return result;
         }
     }
 }
