@@ -32,36 +32,50 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-
-                        <Grid Padding="10" BackgroundColor="Gray">
+                        <Grid BackgroundColor="Wheat" Margin="5,5,5,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="50" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="80" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2"
+                            <Image Grid.RowSpan="3"
                                Source="event3.jpg"
-                               Aspect="AspectFill"
+                               Aspect="AspectFit"
                                HeightRequest="60"
-                               WidthRequest="60" />
-                            <Label Grid.Column="1"
-                               Text="{Binding Title}"
+                               WidthRequest="60" 
+                               BackgroundColor="Beige"/>
+                            <StackLayout Orientation="Horizontal"
+                                         Grid.Column="1">
+                            <Label Text="{Binding Title}"
                                FontAttributes="Bold" 
                                LineBreakMode="NoWrap" 
                                Style="{DynamicResource ListItemTextStyle}" 
                                FontSize="16"/>
+                            <Image Source="event3.jpg" HorizontalOptions="EndAndExpand"
+                                    HeightRequest="20"
+                                    WidthRequest="20"
+                                    Margin="0,5,5,0"/>
+                            </StackLayout>
                             <Label Grid.Row="1"
                                Grid.Column="1"
+                               VerticalTextAlignment="Start"
                                Text="{Binding Description}"
-                               VerticalOptions="End" />
-                            <Label Grid.Row="2"
-                               Grid.Column="1"
-                               Text="{Binding StartDate}"
-                               VerticalOptions="End" />
+                                />
+                            <StackLayout Orientation="Horizontal"
+                                    Grid.Row="2"
+                                    Grid.Column="1">
+                                <Label Text="Status: "/>
+                                <Label Text="Active " TextColor="DarkGreen"/>
+                                <Label Text="Date: "/>
+                                <Label 
+                                   Text="{Binding StartDate}"
+                                   VerticalOptions="End" />
+                            </StackLayout>
+                            
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -7,6 +7,8 @@
              x:Class="Eventador.APP.V2.Views.MenuPage"
              Title="Menu">
              
+    
+    
     <StackLayout VerticalOptions="FillAndExpand">
         <Image Source="event2.jpg"/>
         <Label Text="Имя пользователя" FontSize="20"/>

@@ -6,6 +6,7 @@
              xmlns:controls="clr-namespace:Eventador.APP.V2.Controls"
              xmlns:defines="clr-namespace:Eventador.APP.V2.Common.Defines"
              mc:Ignorable="d"
+             
              x:Class="Eventador.APP.V2.Views.RegisterPage">
     <ContentPage.Content>
         <StackLayout Spacing="25">
@@ -18,49 +19,46 @@
             </StackLayout>
             <Label Text="{x:Static defines:Strings.SignUp}"
 				Style="{StaticResource mainLabelStyle}" />
-            <StackLayout Spacing="0">
-                <StackLayout Orientation="Horizontal"
-					Spacing="0">
+            <Frame
+                CornerRadius="20"
+                Padding="1"
+                Margin="15,0,15,0"
+                BackgroundColor="White"
+                AbsoluteLayout.LayoutFlags="XProportional">
+            
+            <StackLayout Spacing="5">
                     <controls:EventadorEntry x:Name="firstNameEntry"
 						Keyboard="Text"
 						Placeholder="{x:Static defines:Strings.First}"
 						Text="{Binding Firstname}"
 						HeightRequest="45"
 						WidthRequest="159" />
-                    <Image BackgroundColor="{x:Static defines:Colors.SeparatorColor}"
-						HeightRequest="45"
-						WidthRequest="1" />
                     <controls:EventadorEntry x:Name="lastNameEntry"
 						Keyboard="Text"
 						Placeholder="{x:Static defines:Strings.Last}"
 						Text="{Binding Lastname}"
 						HeightRequest="45"
 						WidthRequest="160" />
-                </StackLayout>
-                <StackLayout Spacing="0">
-                    <Image BackgroundColor="{x:Static defines:Colors.SeparatorColor}"
-						HeightRequest="1" />
                     <controls:EventadorEntry x:Name="usernameEntry"
 						Text="{Binding Username}"
 						Placeholder="{x:Static defines:Strings.Username}"
 						HeightRequest="45" />
-                    <Image BackgroundColor="{x:Static defines:Colors.SeparatorColor}"
-						HeightRequest="1" />
                     <controls:EventadorEntry x:Name="passwordEntry"
 						Text="{Binding Password}"
 						Placeholder="{x:Static defines:Strings.Password}"
 						HeightRequest="45"
 						IsPassword="true" />
-                    <Image BackgroundColor="{x:Static defines:Colors.SeparatorColor}"
-						HeightRequest="1" />
                     <controls:EventadorEntry x:Name="emailEntry"
 						Text="{Binding Email}"
 						Placeholder="{x:Static defines:Strings.Email}"
 						HeightRequest="45" />
-                </StackLayout>
             </StackLayout>
+
+            </Frame>
+
             <Button Text="{x:Static defines:Strings.SignUp}"
-				Command="{Binding SignUpUserCommand}" />
+                    Margin="15,0,15,0"
+				    Command="{Binding SignUpUserCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

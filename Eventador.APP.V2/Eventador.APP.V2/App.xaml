@@ -28,7 +28,7 @@
                 <Setter Property="FontSize"
                 	Value="32" />
                 <Setter Property="TextColor"
-                	Value="White" />
+                	Value="Black" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

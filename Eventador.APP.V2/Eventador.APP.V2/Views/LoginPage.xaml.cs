@@ -1,8 +1,6 @@
-﻿using Eventador.APP.V2.Models;
-using Eventador.APP.V2.Requests;
+﻿using Eventador.APP.V2.Requests;
 using Eventador.APP.V2.Services;
 using System;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,7 +31,7 @@ namespace Eventador.APP.V2.Views
             {
                 await DisplayAlert("Log In", $"Something went wrong.\n{ex}", "Ok");
             }
-            
+
         }
 
         private async void SignUpButton_Clicked(object sender, EventArgs e)

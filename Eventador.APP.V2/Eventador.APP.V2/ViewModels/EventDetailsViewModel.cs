@@ -16,7 +16,6 @@ namespace Eventador.APP.V2.ViewModels
         public ICommand FinishCommand => new Command(async () => await Finish());
 
         public bool isAuthor { get; set; }
-        public string Title { get; set; }
         public EventModel Item { get; set; }
 
         protected virtual void OnPropertyChanged(string propertyName = null)
@@ -28,11 +27,11 @@ namespace Eventador.APP.V2.ViewModels
         {
             _eventadorApi = EventadorApi.ResolveApi();
             Item = _eventadorApi.GetEventById(id).Result;
+            Item.ImageUrls = new[] 
+            { "event2.png", "event3.png"};
 
             var userId = long.Parse(SecureStorage.GetAsync("UserId").Result);
             isAuthor = Item.AuthorId == userId;
-
-            Title = $"[{Item.Id}]";
         }
 
         private async Task Finish()
