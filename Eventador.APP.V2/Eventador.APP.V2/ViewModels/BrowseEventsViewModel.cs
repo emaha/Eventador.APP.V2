@@ -11,19 +11,23 @@ namespace Eventador.APP.V2.ViewModels
 {
     public class BrowseEventsViewModel : BaseViewModel
     {
+        public string SearchText { get; set; }
         public ObservableCollection<SmallEventModel> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command SearchItemsCommand { get; set; }
 
         public BrowseEventsViewModel()
         {
             PageTitle = "Browse";
             Items = new ObservableCollection<SmallEventModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            SearchItemsCommand = new Command(async () => await ExecuteSearchItemsCommand(SearchText));
 
             MessagingCenter.Subscribe<CreateEventPage, SmallEventModel>(this, "AddEvent", async (obj, item) =>
             {
                 Items.Add(item);
-                await DataStore.AddItemAsync(item);
+                var id = await DataStore.AddItemAsync(item);
+                item.Id = id;
             });
 
             MessagingCenter.Subscribe<EditEventPage, SmallEventModel>(this, "UpdateEvent", async (obj, item) =>
@@ -40,7 +44,7 @@ namespace Eventador.APP.V2.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync();
+                var items = await DataStore.GetItemsByRegionAsync();
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -52,6 +56,16 @@ namespace Eventador.APP.V2.ViewModels
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        private async Task ExecuteSearchItemsCommand(string searchText)
+        {
+            var items = await DataStore.GetItemsBySearchRequestAsync(searchText);
+            Items.Clear();
+            foreach (var item in items)
+            {
+                Items.Add(item);
             }
         }
 

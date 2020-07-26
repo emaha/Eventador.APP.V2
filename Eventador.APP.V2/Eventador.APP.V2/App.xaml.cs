@@ -20,10 +20,10 @@ namespace Eventador.APP.V2
 
             _authService = DependencyService.Resolve<AuthService>();
 
-            MainPage = GetStartPage();
+            MainPage = GetStartPage().Result;
         }
 
-        private Page GetStartPage()
+        private async Task<Page> GetStartPage()
         {
             long timeForRefreshToken = 8 * 60 * 60;
 
@@ -44,7 +44,7 @@ namespace Eventador.APP.V2
                     {
                         try
                         {
-                            _authService.RefreshToken();
+                            await _authService.RefreshToken();
                         }
                         catch (Exception)
                         {

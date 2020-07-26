@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:cntrs="clr-namespace:Eventador.APP.V2.Controls" xmlns:maps="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials"
              mc:Ignorable="d"
              x:Class="Eventador.APP.V2.Views.EventDetailsPage"
              Title="{Binding Item.Title}">
@@ -14,7 +13,8 @@
                 <Image Source="event1.png"/>
                 <Label VerticalOptions="EndAndExpand"
                     VerticalTextAlignment="Center"
-                    Text="ASDASD"
+                    Text="Какой-нибудь текст"
+                    TextColor="Red"
                     Margin="10"/>
             </Grid>
             <Label Text="{Binding Item.Title}" d:Text="Item name" FontSize="Large"/>

@@ -99,7 +99,7 @@ namespace Eventador.APP.V2.Services
         /// <param name="request"></param>
         /// <returns></returns>
         [Post("/Events")]
-        Task CreateEvent(EventCreateRequest request);
+        Task<long> CreateEvent(EventCreateRequest request);
 
         /// <summary>
         /// Обновление события
@@ -116,6 +116,14 @@ namespace Eventador.APP.V2.Services
         /// <returns></returns>
         [Post("/Events/{id}/Finish")]
         Task FinishEvent(long id);
+
+        /// <summary>
+        /// Получить события по поисковому запросу
+        /// </summary>
+        /// <param name="request">запрос</param>
+        /// <returns></returns>
+        [Get("/Events/Request")]
+        Task<SmallEventModel[]> GetEventsBySearchRequest(string request);
 
         /// <summary>
         /// Участвовать в событии

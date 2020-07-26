@@ -10,7 +10,7 @@ namespace Eventador.APP.V2.Services
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        Task<bool> AddItemAsync(T item);
+        Task<long> AddItemAsync(T item);
 
         /// <summary>
         /// Обновление события 
@@ -34,9 +34,22 @@ namespace Eventador.APP.V2.Services
         Task<T> GetItemAsync(long id);
 
         /// <summary>
-        /// Получить список событий
+        /// Получить список событий по региону
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<T>> GetItemsAsync();
+        Task<IEnumerable<T>> GetItemsByRegionAsync();
+
+        /// <summary>
+        /// Получить список событий по региону
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<T>> GetItemsByAuthorAsync();
+
+        /// <summary>
+        /// Получить события по поисковому запросу
+        /// </summary>
+        /// <param name="request">запрос</param>
+        /// <returns></returns>
+        Task<IEnumerable<T>> GetItemsBySearchRequestAsync(string request);
     }
 }

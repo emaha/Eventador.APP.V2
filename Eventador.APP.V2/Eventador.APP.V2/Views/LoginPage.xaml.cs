@@ -36,7 +36,6 @@ namespace Eventador.APP.V2.Views
 
         private async void SignUpButton_Clicked(object sender, EventArgs e)
         {
-            //Application.Current.MainPage = new RegisterPage();
             await Navigation.PushModalAsync(new NavigationPage(new RegisterPage()));
         }
     }

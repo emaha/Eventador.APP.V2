@@ -58,6 +58,9 @@ namespace Eventador.APP.V2.Views
                     case (int)MenuItemType.Favourites:
                         MenuPages.Add(id, new NavigationPage(new FavouritesPage()));
                         break;
+                    case (int)MenuItemType.Messages:
+                        MenuPages.Add(id, new NavigationPage(new MessagesPage()));
+                        break;
                     case (int)MenuItemType.Friends:
                         MenuPages.Add(id, new NavigationPage(new FriendsPage()));
                         break;

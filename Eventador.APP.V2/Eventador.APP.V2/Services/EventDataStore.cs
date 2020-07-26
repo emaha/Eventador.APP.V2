@@ -18,7 +18,7 @@ namespace Eventador.APP.V2.Services
             items = new List<SmallEventModel>();
         }
 
-        public async Task<bool> AddItemAsync(SmallEventModel item)
+        public async Task<long> AddItemAsync(SmallEventModel item)
         {
             var request = new EventCreateRequest()
             {
@@ -29,9 +29,9 @@ namespace Eventador.APP.V2.Services
                 AccessType = item.SelectedAccessType,
                 EventType = item.SelectedEventType
             };
-            await _eventadorApi.CreateEvent(request);
+            var id = await _eventadorApi.CreateEvent(request);
 
-            return await Task.FromResult(true);
+            return id;
         }
 
         public async Task<bool> UpdateItemAsync(SmallEventModel item)
@@ -59,9 +59,9 @@ namespace Eventador.APP.V2.Services
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<SmallEventModel>> GetItemsAsync()
+        public async Task<IEnumerable<SmallEventModel>> GetItemsByRegionAsync()
         {
-            //return await _eventadorApi.GetEventsByRegion(1);
+            long regionId = 1;
 
             var result = await Policy
               .Handle<Refit.ApiException>()
@@ -69,7 +69,37 @@ namespace Eventador.APP.V2.Services
               .Retry()
               .Execute(async () =>
               {
-                  return await _eventadorApi.GetEventsByRegion(1);
+                  return await _eventadorApi.GetEventsByRegion(regionId);
+              });
+
+            return result;
+        }
+
+        public async Task<IEnumerable<SmallEventModel>> GetItemsByAuthorAsync()
+        {
+            long authorId = 1;
+
+            var result = await Policy
+              .Handle<Refit.ApiException>()
+              .Or<Refit.ValidationApiException>()
+              .Retry()
+              .Execute(async () =>
+              {
+                  return await _eventadorApi.GetEventsByAuthor(authorId);
+              });
+
+            return result;
+        }
+
+        public async Task<IEnumerable<SmallEventModel>> GetItemsBySearchRequestAsync(string request)
+        {
+            var result = await Policy
+              .Handle<Refit.ApiException>()
+              .Or<Refit.ValidationApiException>()
+              .Retry()
+              .Execute(async () =>
+              {
+                  return await _eventadorApi.GetEventsBySearchRequest(request);
               });
 
             return result;
