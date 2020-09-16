@@ -1,14 +1,13 @@
 ﻿using Eventador.APP.V2.Models;
 using Eventador.APP.V2.ViewModels;
 using System;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Eventador.APP.V2.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditEventPage : ContentPage
+    public partial class EditEventPage : BasePage
     {
         public EditEventViewModel Item { get; set; }
 

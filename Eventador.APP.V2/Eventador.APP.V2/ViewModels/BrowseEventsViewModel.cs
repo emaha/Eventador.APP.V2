@@ -3,7 +3,7 @@ using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Services;
 using System;
 using System.Collections.ObjectModel;
-using System.Threading;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -15,8 +15,8 @@ namespace Eventador.APP.V2.ViewModels
         public IDataStore<SmallEventModel> DataStore => DependencyService.Get<IDataStore<SmallEventModel>>();
         public ObservableCollection<SmallEventModel> Items { get; set; }
 
-        public ICommand LoadItemsCommand => new Command(async () => await ExecuteLoadItemsCommand());
-        public ICommand SearchItemsCommand => new Command(async () => await ExecuteSearchItemsCommand(SearchText));
+        public ICommand LoadItemsCommand => new Command(async () => await ExecuteLoadItems());
+        public ICommand SearchItemsCommand => new Command(async () => await ExecuteSearchItems(SearchText));
         public ICommand GoToCreateEventPageCommand => MakeNavigateToCommand(Pages.CreateEvent);
 
         public string SearchText { get; set; }
@@ -45,7 +45,7 @@ namespace Eventador.APP.V2.ViewModels
             });
         }
 
-        private async Task ExecuteLoadItemsCommand()
+        private async Task ExecuteLoadItems()
         {
             IsBusy = true;
 
@@ -64,11 +64,16 @@ namespace Eventador.APP.V2.ViewModels
             }
             finally
             {
+                // Правильное исчезновение иконки загрузки получилось решить только так.
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    await Task.Delay(100);
+                }
                 IsBusy = false;
             }
         }
 
-        private async Task ExecuteSearchItemsCommand(string searchText)
+        private async Task ExecuteSearchItems(string searchText)
         {
             var items = await DataStore.GetItemsBySearchRequestAsync(searchText);
             Items.Clear();

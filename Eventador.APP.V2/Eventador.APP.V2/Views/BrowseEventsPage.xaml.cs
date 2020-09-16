@@ -6,7 +6,7 @@ namespace Eventador.APP.V2.Views
 {
     public partial class BrowseEventsPage : BasePage
     {
-        private readonly BrowseEventsViewModel viewModel; // TODO убрать, т.к. он все равно создается базовым классом
+        private readonly BrowseEventsViewModel viewModel;
 
         public BrowseEventsPage()
         {
@@ -26,16 +26,11 @@ namespace Eventador.APP.V2.Views
             ItemsListView.SelectedItem = null;
         }
 
-        // TODO: срабатывает даже на странице логина при запуске программы
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (viewModel.Items.Count == 0)
-            {
-                // Залипает индикатор обновления
-                //await viewModel.LoadItemsCommand.Execute(null);
-            }
+            viewModel.LoadItemsCommand.Execute(null);
         }
+
     }
 }

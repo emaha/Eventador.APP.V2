@@ -8,20 +8,14 @@ using Xamarin.Forms;
 
 namespace Eventador.APP.V2.ViewModels
 {
-    public class EventDetailsViewModel : INotifyPropertyChanged
+    public class EventDetailsViewModel : BaseViewModel
     {
         private IEventadorApi _eventadorApi;
 
-        public event PropertyChangedEventHandler PropertyChanged;
         public ICommand FinishCommand => new Command(async () => await Finish());
 
         public bool isAuthor { get; set; }
         public EventModel Item { get; set; }
-
-        protected virtual void OnPropertyChanged(string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public EventDetailsViewModel(long id)
         {

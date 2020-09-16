@@ -6,9 +6,9 @@ namespace Eventador.APP.V2.ViewModels
     public class MainViewModel : BaseViewModel
     {
 
-        public async Task GoTo(Pages page)
+        public async Task GoTo(Pages page, NavigationMode navMode = NavigationMode.Normal)
         {
-            await NavigateTo(page);
+            await NavigateTo(page, null, navMode);
         }
     }
 }

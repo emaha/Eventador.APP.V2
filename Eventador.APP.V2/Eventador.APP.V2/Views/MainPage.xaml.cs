@@ -46,12 +46,17 @@ namespace Eventador.APP.V2.Views
             if (page == Pages.Logout)
             {
                 _authService.DeleteCredentials();
-                Application.Current.MainPage = new LoginPage();
-                return;
+                await MainViewModel.GoTo(Pages.Login, Common.Defines.NavigationMode.RootPage);
             }
-            await MainViewModel.GoTo(page);
+            else
+            {
+                await MainViewModel.GoTo(page);
+            }
+
             if (Device.RuntimePlatform == Device.Android)
+            {
                 await Task.Delay(100);
+            }
 
             IsPresented = false;
         }
