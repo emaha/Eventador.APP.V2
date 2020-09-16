@@ -1,39 +1,47 @@
-﻿using Eventador.APP.V2.Models;
-using Eventador.APP.V2.Views;
+﻿using Eventador.APP.V2.Common.Defines;
+using Eventador.APP.V2.Models;
+using Eventador.APP.V2.Services;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Eventador.APP.V2.ViewModels
 {
     public class BrowseEventsViewModel : BaseViewModel
     {
-        public string SearchText { get; set; }
+        public IDataStore<SmallEventModel> DataStore => DependencyService.Get<IDataStore<SmallEventModel>>();
         public ObservableCollection<SmallEventModel> Items { get; set; }
-        public Command LoadItemsCommand { get; set; }
-        public Command SearchItemsCommand { get; set; }
+
+        public ICommand LoadItemsCommand => new Command(async () => await ExecuteLoadItemsCommand());
+        public ICommand SearchItemsCommand => new Command(async () => await ExecuteSearchItemsCommand(SearchText));
+        public ICommand GoToCreateEventPageCommand => MakeNavigateToCommand(Pages.CreateEvent);
+
+        public string SearchText { get; set; }
+
+        private bool isBusy = false;
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { SetProperty(ref isBusy, value); }
+        }
 
         public BrowseEventsViewModel()
         {
             PageTitle = "Browse";
             Items = new ObservableCollection<SmallEventModel>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            SearchItemsCommand = new Command(async () => await ExecuteSearchItemsCommand(SearchText));
 
-            MessagingCenter.Subscribe<CreateEventPage, SmallEventModel>(this, "AddEvent", async (obj, item) =>
+            MessagingCenter.Unsubscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent");
+            MessagingCenter.Subscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent", async (obj, item) =>
             {
                 Items.Add(item);
-                var id = await DataStore.AddItemAsync(item);
-                item.Id = id;
-            });
 
-            MessagingCenter.Subscribe<EditEventPage, SmallEventModel>(this, "UpdateEvent", async (obj, item) =>
-            {
-                await DataStore.UpdateItemAsync(item);
-                OnPropertyChanged();
+                var id = await DataStore.AddItemAsync(item);
+                await ShowAlert("Create", $"Event created successful with id = {id}", "OK");
+                item.Id = id;
             });
         }
 
@@ -45,6 +53,7 @@ namespace Eventador.APP.V2.ViewModels
             {
                 Items.Clear();
                 var items = await DataStore.GetItemsByRegionAsync();
+
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -68,6 +77,5 @@ namespace Eventador.APP.V2.ViewModels
                 Items.Add(item);
             }
         }
-
     }
 }

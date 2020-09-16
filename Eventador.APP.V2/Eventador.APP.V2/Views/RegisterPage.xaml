@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ViewModels:BasePage  xmlns:ViewModels="clr-namespace:Eventador.APP.V2.ViewModels" 
+                      xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -29,27 +30,27 @@
             <StackLayout Spacing="5">
                     <controls:EventadorEntry x:Name="firstNameEntry"
 						Keyboard="Text"
-						Placeholder="{x:Static defines:Strings.First}"
-						Text="{Binding Firstname}"
+						Text="{Binding RegisterModel.Firstname}"
+                        Placeholder="{x:Static defines:Strings.First}"
 						HeightRequest="45"
 						WidthRequest="159" />
                     <controls:EventadorEntry x:Name="lastNameEntry"
 						Keyboard="Text"
-						Placeholder="{x:Static defines:Strings.Last}"
-						Text="{Binding Lastname}"
+						Text="{Binding RegisterModel.Lastname}"
+                        Placeholder="{x:Static defines:Strings.Last}"
 						HeightRequest="45"
 						WidthRequest="160" />
                     <controls:EventadorEntry x:Name="usernameEntry"
-						Text="{Binding Username}"
-						Placeholder="{x:Static defines:Strings.Username}"
+						Text="{Binding RegisterModel.Login}"
+						Placeholder="{x:Static defines:Strings.Login}"
 						HeightRequest="45" />
                     <controls:EventadorEntry x:Name="passwordEntry"
-						Text="{Binding Password}"
+						Text="{Binding RegisterModel.Password}"
 						Placeholder="{x:Static defines:Strings.Password}"
 						HeightRequest="45"
 						IsPassword="true" />
                     <controls:EventadorEntry x:Name="emailEntry"
-						Text="{Binding Email}"
+						Text="{Binding RegisterModel.Email}"
 						Placeholder="{x:Static defines:Strings.Email}"
 						HeightRequest="45" />
             </StackLayout>
@@ -61,4 +62,4 @@
 				    Command="{Binding SignUpUserCommand}"/>
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>
+</ViewModels:BasePage>

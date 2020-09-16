@@ -1,4 +1,6 @@
-﻿using Eventador.APP.V2.Models;
+﻿using Eventador.APP.V2.Common.Defines;
+using Eventador.APP.V2.Models;
+using Eventador.APP.V2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,26 +9,26 @@ using Xamarin.Forms.Xaml;
 
 namespace Eventador.APP.V2.Views
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class MenuPage : ContentPage
     {
+        public MenuViewModel MenuViewModel;
         MainPage RootPage { get => Application.Current.MainPage as MainPage; }
         List<HomeMenuItem> menuItems;
         public MenuPage()
         {
+            MenuViewModel = new MenuViewModel();
             InitializeComponent();
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.BrowseEvents, Title="Browse Events" },
-                new HomeMenuItem {Id = MenuItemType.MyEvents, Title="My Events" },
-                new HomeMenuItem {Id = MenuItemType.Favourites, Title="Favourites" },
-                new HomeMenuItem {Id = MenuItemType.Messages, Title="Messages" },
-                new HomeMenuItem {Id = MenuItemType.Friends, Title="Friends" },
-                new HomeMenuItem {Id = MenuItemType.Profile, Title="Profile" },
-                new HomeMenuItem {Id = MenuItemType.Logout, Title="Logout" }
+                new HomeMenuItem {Page = Pages.BrowseEvents, Title="Browse Events" },
+                new HomeMenuItem {Page = Pages.MyEvents, Title="My Events" },
+                new HomeMenuItem {Page = Pages.Favourites, Title="Favourites" },
+                new HomeMenuItem {Page = Pages.Messages, Title="Messages" },
+                new HomeMenuItem {Page = Pages.Friends, Title="Friends" },
+                new HomeMenuItem {Page = Pages.Profile, Title="Profile" },
+                new HomeMenuItem {Page = Pages.Logout, Title="Logout" }
             };
 
             ListViewMenu.ItemsSource = menuItems;
@@ -37,8 +39,9 @@ namespace Eventador.APP.V2.Views
                 if (e.SelectedItem == null)
                     return;
 
-                var id = (int)((HomeMenuItem)e.SelectedItem).Id;
-                await RootPage.NavigateFromMenu(id);
+                var page = ((HomeMenuItem)e.SelectedItem).Page;
+                
+                await RootPage.NavigateFromMenu(page);
             };
         }
     }

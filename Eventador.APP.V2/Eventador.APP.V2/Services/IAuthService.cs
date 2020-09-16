@@ -9,7 +9,7 @@ namespace Eventador.APP.V2.Services
         /// Авторизация
         /// </summary>
         /// <param name="request"></param>
-        Task SignIn(CredentialsRequest request);
+        Task SignIn(SignInRequest request);
         
         /// <summary>
         /// Выход

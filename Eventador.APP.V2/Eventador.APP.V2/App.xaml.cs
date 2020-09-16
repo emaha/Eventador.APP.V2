@@ -1,5 +1,6 @@
-﻿using Eventador.APP.V2.Services;
-using Eventador.APP.V2.Views;
+﻿using Eventador.APP.V2.Common;
+using Eventador.APP.V2.Common.Defines;
+using Eventador.APP.V2.Services;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -13,28 +14,55 @@ namespace Eventador.APP.V2
 
         public App()
         {
-            InitializeComponent();
+            //Fix ios crash
+            Current.MainPage = new ContentPage();
 
             DependencyService.Register<EventDataStore>();
             DependencyService.Register<AuthService>();
 
             _authService = DependencyService.Resolve<AuthService>();
-
-            MainPage = GetStartPage().Result;
         }
 
-        private async Task<Page> GetStartPage()
+        protected override async void OnStart()
         {
-            long timeForRefreshToken = 8 * 60 * 60;
+            // Метод OnStart вызывается при запуске приложения.
+            InitializeComponent();
 
-            var token = SecureStorage.GetAsync("AccessToken").Result;
-            if (string.IsNullOrWhiteSpace(token))
+            DialogService.Init(this);
+
+            var page = await GetStartPage();
+            if (page == Pages.Main)
             {
-                return new LoginPage();
+                await NavigationService.Init(Pages.Main);
             }
             else
             {
-                var expireString = SecureStorage.GetAsync("Expires").Result;
+                await NavigationService.Init(Pages.Login);
+            }
+        }
+
+        protected override void OnSleep()
+        {
+            // Метод OnSleep вызывается когда приложение переводится в фоновый режим.
+        }
+
+        protected override void OnResume()
+        {
+            // Метод OnResume вызывается при выходе из фонового режима.
+        }
+
+        private async Task<Pages> GetStartPage()
+        {
+            long timeForRefreshToken = 8 * 60 * 60;
+
+            var token = await SecureStorage.GetAsync("AccessToken");
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                return Pages.Login;
+            }
+            else
+            {
+                var expireString = await SecureStorage.GetAsync("Expires");
                 if (!string.IsNullOrWhiteSpace(expireString))
                 {
                     var expire = long.Parse(expireString);
@@ -49,28 +77,13 @@ namespace Eventador.APP.V2
                         catch (Exception)
                         {
                             _authService.DeleteCredentials();
-                            return new LoginPage();
+                            return Pages.Login;
                         }
                     }
                 }
 
-                return new MainPage();
+                return Pages.Main;
             }
-        }
-
-        protected override void OnStart()
-        {
-            // Метод OnStart вызывается при запуске приложения.
-        }
-
-        protected override void OnSleep()
-        {
-            // Метод OnSleep вызывается когда приложение переводится в фоновый режим.
-        }
-
-        protected override void OnResume()
-        {
-            // Метод OnResume вызывается при выходе из фонового режима.
         }
     }
 }

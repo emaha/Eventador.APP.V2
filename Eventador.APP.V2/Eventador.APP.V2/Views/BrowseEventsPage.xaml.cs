@@ -1,15 +1,12 @@
 ﻿using Eventador.APP.V2.Models;
 using Eventador.APP.V2.ViewModels;
-using System;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Views
 {
-    [DesignTimeVisible(false)]
-    public partial class BrowseEventsPage : ContentPage
+    public partial class BrowseEventsPage : BasePage
     {
-        private BrowseEventsViewModel viewModel;
+        private readonly BrowseEventsViewModel viewModel; // TODO убрать, т.к. он все равно создается базовым классом
 
         public BrowseEventsPage()
         {
@@ -18,11 +15,10 @@ namespace Eventador.APP.V2.Views
             BindingContext = viewModel = new BrowseEventsViewModel();
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as SmallEventModel;
-            if (item == null)
-                return;
+            if (item == null) return;
 
             await Navigation.PushAsync(new EventDetailsPage(new EventDetailsViewModel(item.Id)));
 
@@ -30,17 +26,15 @@ namespace Eventador.APP.V2.Views
             ItemsListView.SelectedItem = null;
         }
 
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new CreateEventPage()));
-        }
+        // TODO: срабатывает даже на странице логина при запуске программы
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0)
             {
-                viewModel.LoadItemsCommand.Execute(null);
+                // Залипает индикатор обновления
+                //await viewModel.LoadItemsCommand.Execute(null);
             }
         }
     }

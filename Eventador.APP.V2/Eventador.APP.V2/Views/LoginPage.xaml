@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ViewModels:BasePage  xmlns:ViewModels="clr-namespace:Eventador.APP.V2.ViewModels" 
+                      xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -42,9 +43,23 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Image Source="face_icon"  BackgroundColor="AliceBlue" HeightRequest="70" VerticalOptions="EndAndExpand"/>
-                <Entry Grid.Row="1" x:Name="Email" Placeholder="Email or Phone Number" PlaceholderColor="#bababa" FontSize="16"/>
-                <Entry Grid.Row="2" x:Name="Password" Placeholder="Password" PlaceholderColor="#bababa" FontSize="16" IsPassword="True"/>
-                <Button x:Name="LogInButton" Grid.Row="3" Text="Log In" BackgroundColor="#3897F0" TextColor="White" HeightRequest="50" VerticalOptions="StartAndExpand"/>
+                <Entry Grid.Row="1" 
+                       Text="{Binding LoginModel.Login}" 
+                       Placeholder="Login, Email or Phone Number" 
+                       PlaceholderColor="#bababa"
+                       FontSize="16"/>
+                <Entry Grid.Row="2" 
+                       Text="{Binding LoginModel.Password}" 
+                       Placeholder="Password" 
+                       PlaceholderColor="#bababa" FontSize="16" 
+                       IsPassword="True"/>
+                <Button Grid.Row="3" Text="Log In" 
+                        Command="{Binding SignInCommand}"
+                        BackgroundColor="#3897F0" 
+                        TextColor="White" 
+                        HeightRequest="50" 
+                        VerticalOptions="StartAndExpand"/>
+                
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -64,7 +79,7 @@
             <StackLayout Grid.Row="2" BackgroundColor="White" >
                 <Label HeightRequest="1" BackgroundColor="#E3E3E3"/>
                 <Button x:Name="SignUpButton" 
-                        Clicked="SignUpButton_Clicked"
+                        Command="{Binding GoToRegisterCommand}"
                         Text="Don't have an account? Sign up"
                         BackgroundColor="#F03807" TextColor="White" 
                         HeightRequest="50" VerticalOptions="StartAndExpand"
@@ -76,4 +91,4 @@
     </ContentPage.Content>
     
     
-</ContentPage>
+</ViewModels:BasePage>

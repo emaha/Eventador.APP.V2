@@ -20,6 +20,7 @@ namespace Eventador.APP.V2.Common.Defines
 		public static readonly string FriendRequests = "Friend Requests";
 		public static readonly string InvalidCredentials = "Invalid Credentials";
 		public static readonly string Last = "Last";
+		public static readonly string Login = "Login";
 		public static readonly string Moments = "Moments";
 		public static readonly string MomentSent = "Moment Sent";
 		public static readonly string NoInternetConnection = "No Internet Connection";

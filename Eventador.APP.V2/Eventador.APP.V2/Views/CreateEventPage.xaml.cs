@@ -8,66 +8,65 @@ using Xamarin.Forms.Xaml;
 namespace Eventador.APP.V2.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CreateEventPage : ContentPage
+    public partial class CreateEventPage : BasePage
     {
+        public CreateEventViewModel ViewModel { get; set; }
+
         public CreateEventPage()
         {
             InitializeComponent();
 
-            Item = new CreateEventViewModel();
-            Item.AccessTypes = new List<Types.AccessType>();
+            ViewModel = new CreateEventViewModel();
+            BindingContext = ViewModel;
+
+            ViewModel.Model.AccessTypes = new List<Types.AccessType>();
             foreach (Types.AccessType item in Enum.GetValues(typeof(Types.AccessType)))
             {
-                Item.AccessTypes.Add(item);
+                ViewModel.Model.AccessTypes.Add(item);
             }
 
-            Item.EventTypes = new List<Types.EventType>();
+            ViewModel.Model.EventTypes = new List<Types.EventType>();
             foreach (Types.EventType item in Enum.GetValues(typeof(Types.EventType)))
             {
-                Item.EventTypes.Add(item);
+                ViewModel.Model.EventTypes.Add(item);
             }
-
-            BindingContext = this;
         }
 
-        public CreateEventViewModel Item { get; set; }
-
-        async void Save_Clicked(object sender, EventArgs e)
+        private async void Save_Clicked(object sender, EventArgs e)
         {
             var smallModel = new SmallEventModel
             {
-                Title = Item.Title,
-                Description = Item.Description,
-                StartDate = Item.StartDate + Item.SelectedTime,
-                SelectedAccessType = Item.SelectedAccessType,
-                SelectedEventType = Item.SelectedEventType
+                Title = ViewModel.Model.Title,
+                Description = ViewModel.Model.Description,
+                StartDate = ViewModel.Model.StartDate + ViewModel.Model.SelectedTime,
+                SelectedAccessType = ViewModel.Model.SelectedAccessType,
+                SelectedEventType = ViewModel.Model.SelectedEventType
             };
 
             MessagingCenter.Send(this, "AddEvent", smallModel);
             await Navigation.PopModalAsync();
         }
 
-        async void Cancel_Clicked(object sender, EventArgs e)
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
         }
 
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
-            if (Item != null)
+            if (ViewModel != null)
             {
-                Item.StartDate = e.NewDate;
+                ViewModel.Model.StartDate = e.NewDate;
             }
         }
 
         private void eventTypePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void accessTypePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Item != null)
+            if (ViewModel != null)
             {
                 // Item.AccessType = picker.
             }

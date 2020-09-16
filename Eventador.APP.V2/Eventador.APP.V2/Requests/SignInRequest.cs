@@ -1,33 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Eventador.APP.V2.Requests
+﻿namespace Eventador.APP.V2.Requests
 {
     /// <summary>
     /// Запрос для авторизации
     /// </summary>
-    public class CredentialsRequest
+    public class SignInRequest
     {
         /// <summary>
         /// ctor
         /// </summary>
-        /// <param name="username"></param>
+        /// <param name="login"></param>
         /// <param name="password"></param>
-        public CredentialsRequest(string username, string password)
+        public SignInRequest(string login, string password)
         {
-            Username = username;
+            Login = login;
             Password = password;
         }
 
         /// <summary>
-        /// Имя пользователя 
+        /// Имя пользователя
         /// </summary>
-        public string Username { get; set; }
+        public string Login { get; set; }
 
         /// <summary>
         /// Пароль
         /// </summary>
         public string Password { get; set; }
+
     }
 }

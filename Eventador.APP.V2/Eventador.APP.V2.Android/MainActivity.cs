@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Acr.UserDialogs;
+using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Droid
 {
@@ -19,8 +21,8 @@ namespace Eventador.APP.V2.Droid
 
             base.OnCreate(savedInstanceState);
 
-            // Видос по попапам
-            // https://www.youtube.com/watch?time_continue=448&v=ziKr34qZxII&feature=emb_logo
+            UserDialogs.Init(() => (Activity)Forms.Context);
+
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

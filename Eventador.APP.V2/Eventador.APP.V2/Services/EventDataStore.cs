@@ -9,13 +9,13 @@ namespace Eventador.APP.V2.Services
 {
     public class EventDataStore : IDataStore<SmallEventModel>
     {
-        private readonly List<SmallEventModel> items;
+        private readonly List<SmallEventModel> _items;
         private readonly IEventadorApi _eventadorApi;
 
         public EventDataStore()
         {
             _eventadorApi = EventadorApi.ResolveApi();
-            items = new List<SmallEventModel>();
+            _items = new List<SmallEventModel>();
         }
 
         public async Task<long> AddItemAsync(SmallEventModel item)
@@ -36,9 +36,9 @@ namespace Eventador.APP.V2.Services
 
         public async Task<bool> UpdateItemAsync(SmallEventModel item)
         {
-            var oldItem = items.Where((SmallEventModel arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
+            var oldItem = _items.Where((SmallEventModel arg) => arg.Id == item.Id).FirstOrDefault();
+            _items.Remove(oldItem);
+            _items.Add(item);
 
             EventUpdateRequest request = EventUpdateRequest.Create(item);
             await _eventadorApi.UpdateEvent(request);
@@ -48,15 +48,15 @@ namespace Eventador.APP.V2.Services
 
         public async Task<bool> DeleteItemAsync(long id)
         {
-            var oldItem = items.Where((SmallEventModel arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            var oldItem = _items.Where((SmallEventModel arg) => arg.Id == id).FirstOrDefault();
+            _items.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
         public async Task<SmallEventModel> GetItemAsync(long id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(_items.FirstOrDefault(s => s.Id == id));
         }
 
         public async Task<IEnumerable<SmallEventModel>> GetItemsByRegionAsync()

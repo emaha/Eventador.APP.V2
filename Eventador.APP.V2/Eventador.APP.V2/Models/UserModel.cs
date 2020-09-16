@@ -44,6 +44,6 @@
         /// <summary>
         /// Информация
         /// </summary>
-        public string Info { get; set; }
+        public string AboutInfo { get; set; }
     }
 }

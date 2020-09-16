@@ -41,7 +41,7 @@ namespace Eventador.APP.V2.Services
             SecureStorage.Remove("Expires");
         }
 
-        public async Task SignIn(CredentialsRequest request)
+        public async Task SignIn(SignInRequest request)
         {
             var token = await _eventadorApi.SignIn(request);
 

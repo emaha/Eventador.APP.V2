@@ -16,7 +16,7 @@ namespace Eventador.APP.V2.Services
         /// <param name="request"></param>
         /// <returns></returns>
         [Post("/Auth/SignIn")]
-        Task<TokenModel> SignIn(CredentialsRequest request);
+        Task<TokenModel> SignIn(SignInRequest request);
 
         /// <summary>
         /// Выход
@@ -43,7 +43,7 @@ namespace Eventador.APP.V2.Services
         /// <param name="request">Запрос на регистрацию</param>
         /// <returns></returns>
         [Post("/Users/SignUp")]
-        Task SignUp(CredentialsRequest request);
+        Task SignUp(SignUpRequest request);
 
         /// <summary>
         /// Получить данные пользователя по токену
