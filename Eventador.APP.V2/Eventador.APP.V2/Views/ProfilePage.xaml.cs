@@ -8,6 +8,7 @@ namespace Eventador.APP.V2.Views
     {
         public ProfilePage()
         {
+            BindingContext = new ProfileViewModel();
             InitializeComponent();
         }
 

@@ -6,11 +6,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Eventador.APP.V2.Views.CreateEventPage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}" />
-        <ToolbarItem Text="Save" Command="{Binding CreateEventCommand}"/>
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
             <Entry Placeholder="Event Title" Text="{Binding Model.Title}" d:Text="Item name" FontSize="Small" />
@@ -32,7 +27,8 @@
                 <DatePicker.MaximumDate>1/01/2050</DatePicker.MaximumDate>
             </DatePicker>
             <TimePicker Time="{Binding Model.SelectedTime, Mode=OneWayToSource}"/>
-
+            <Button Text="Save" Command="{Binding CancelCommand}"/>
+            <Button Text="Cancel" Command="{Binding CreateEventCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ViewModels:BasePage>

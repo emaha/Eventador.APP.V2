@@ -58,8 +58,8 @@
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
-                <Button Text="GetIn" Clicked="GetInButton_Clicked"/>
-                <Button Text="Chat" Clicked="ChatButton_Clicked"/>
+                <Button Text="GetIn" />
+                <Button Text="Chat" />
             </StackLayout>
             <Button Text="Finish event" HorizontalOptions="CenterAndExpand" Command="{Binding FinishCommand}">
                 <Button.Triggers>
@@ -74,4 +74,4 @@
         </StackLayout>
     </ScrollView>
 
-</Vi>
+</ViewModels:BasePage>

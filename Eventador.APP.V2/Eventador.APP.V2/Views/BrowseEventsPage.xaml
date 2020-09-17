@@ -9,10 +9,6 @@
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding GoToCreateEventPageCommand}" />
-    </ContentPage.ToolbarItems>
-
     <StackLayout>
         <Frame CornerRadius="10" Margin="2" Padding="2">
             <Grid>
@@ -29,6 +25,7 @@
         </Frame>
 
         <ListView x:Name="ItemsListView"
+                SelectedItem="{Binding YourSelectedItem, Mode=TwoWay}"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"

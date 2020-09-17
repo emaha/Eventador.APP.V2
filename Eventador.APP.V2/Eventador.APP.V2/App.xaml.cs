@@ -27,18 +27,11 @@ namespace Eventador.APP.V2
         {
             // Метод OnStart вызывается при запуске приложения.
             InitializeComponent();
-
+            
             DialogService.Init(this);
+            await NavigationService.Init(await GetStartPage());
 
-            var page = await GetStartPage();
-            if (page == Pages.Main)
-            {
-                await NavigationService.Init(Pages.Main);
-            }
-            else
-            {
-                await NavigationService.Init(Pages.Login);
-            }
+            
         }
 
         protected override void OnSleep()

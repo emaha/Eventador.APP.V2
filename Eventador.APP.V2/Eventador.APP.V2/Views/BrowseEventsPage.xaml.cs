@@ -7,12 +7,13 @@ namespace Eventador.APP.V2.Views
     public partial class BrowseEventsPage : BasePage
     {
         private readonly BrowseEventsViewModel viewModel;
+        private readonly string Title = "Events";
+
 
         public BrowseEventsPage()
         {
-            InitializeComponent();
-
             BindingContext = viewModel = new BrowseEventsViewModel();
+            InitializeComponent();
         }
 
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -20,7 +21,10 @@ namespace Eventador.APP.V2.Views
             var item = args.SelectedItem as SmallEventModel;
             if (item == null) return;
 
-            await Navigation.PushAsync(new EventDetailsPage(new EventDetailsViewModel(item.Id)));
+            var detailsModel = new EventDetailsViewModel(item.Id);
+            var page = new NavigationPage(new EventDetailsPage(detailsModel));
+
+            await Navigation.PushAsync(page);
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -29,7 +33,10 @@ namespace Eventador.APP.V2.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.LoadItemsCommand.Execute(null);
+            if(viewModel.Items.Count == 0)
+            {
+                viewModel.LoadItemsCommand.Execute(null);
+            }
         }
 
     }

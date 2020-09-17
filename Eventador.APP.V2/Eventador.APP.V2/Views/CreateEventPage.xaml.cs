@@ -32,26 +32,6 @@ namespace Eventador.APP.V2.Views
             }
         }
 
-        private async void Save_Clicked(object sender, EventArgs e)
-        {
-            var smallModel = new SmallEventModel
-            {
-                Title = ViewModel.Model.Title,
-                Description = ViewModel.Model.Description,
-                StartDate = ViewModel.Model.StartDate + ViewModel.Model.SelectedTime,
-                SelectedAccessType = ViewModel.Model.SelectedAccessType,
-                SelectedEventType = ViewModel.Model.SelectedEventType
-            };
-
-            MessagingCenter.Send(this, "AddEvent", smallModel);
-            await Navigation.PopModalAsync();
-        }
-
-        private async void Cancel_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
-
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             if (ViewModel != null)

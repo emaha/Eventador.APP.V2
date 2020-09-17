@@ -14,19 +14,8 @@ namespace Eventador.APP.V2.Views
 
         public EventDetailsPage(EventDetailsViewModel viewModel)
         {
+            BindingContext = viewModel;
             InitializeComponent();
-        }
-
-        private void GetInButton_Clicked(object sender, EventArgs e)
-        {
-        }
-
-        private void ChatButton_Clicked(object sender, EventArgs e)
-        {
-        }
-
-        private void FinishButton_Clicked(object sender, EventArgs e)
-        {
         }
 
         private async void EditButton_Clicked(object sender, EventArgs e)

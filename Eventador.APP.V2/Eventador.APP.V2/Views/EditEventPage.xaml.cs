@@ -22,12 +22,12 @@ namespace Eventador.APP.V2.Views
         {
             var smallModel = new SmallEventModel
             {
-                Id = Item.Id,
-                Title = Item.Title,
-                Description = Item.Description,
-                StartDate = Item.StartDate + Item.SelectedTime,
-                SelectedAccessType = Item.SelectedAccessType,
-                SelectedEventType = Item.SelectedEventType
+                Id = Item.EditEventModel.Id,
+                Title = Item.EditEventModel.Title,
+                Description = Item.EditEventModel.Description,
+                StartDate = Item.EditEventModel.StartDate + Item.EditEventModel.SelectedTime,
+                SelectedAccessType = Item.EditEventModel.SelectedAccessType,
+                SelectedEventType = Item.EditEventModel.SelectedEventType
             };
 
             MessagingCenter.Send(this, "UpdateEvent", smallModel);
@@ -43,7 +43,7 @@ namespace Eventador.APP.V2.Views
         {
             if (Item != null)
             {
-                Item.StartDate = e.NewDate;
+                Item.EditEventModel.StartDate = e.NewDate;
             }
         }
 

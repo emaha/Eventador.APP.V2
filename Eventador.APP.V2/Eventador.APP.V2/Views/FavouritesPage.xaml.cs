@@ -3,11 +3,11 @@ using Xamarin.Forms.Xaml;
 
 namespace Eventador.APP.V2.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FavouritesPage : BasePage
     {
         public FavouritesPage()
         {
+            BindingContext = new FavouritesViewModel();
             InitializeComponent();
         }
     }

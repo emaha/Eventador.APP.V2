@@ -111,7 +111,7 @@ namespace Eventador.APP.V2
             {
                 try
                 {
-                    Application.Current.MainPage = newPage;
+                    Application.Current.MainPage = new NavigationPage(newPage);
                     pushInfoOnCompletedTask.SetResult(true);
                 }
                 catch

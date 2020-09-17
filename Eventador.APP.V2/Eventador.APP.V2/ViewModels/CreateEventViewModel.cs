@@ -30,7 +30,7 @@ namespace Eventador.APP.V2.ViewModels
                 SelectedEventType = Model.SelectedEventType
             };
 
-            MessagingCenter.Send(this, "CreateEvent", item);
+            //MessagingCenter.Send(this, "CreateEvent", item);
             _ = await NavigateBack();
         }
 

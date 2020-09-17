@@ -6,11 +6,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Eventador.APP.V2.Views.ProfilePage">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit" Clicked="ToolbarEdit_Clicked" />
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Frame CornerRadius="10" Margin="50,10,50,20" >

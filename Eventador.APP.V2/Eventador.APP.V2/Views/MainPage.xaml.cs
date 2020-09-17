@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace Eventador.APP.V2.Views
 {
     [DesignTimeVisible(false)]
-    public partial class MainPage : MasterDetailPage
+    public partial class MainPage : TabbedPage
     {
         private readonly IEventadorApi _eventadorApi;
         private readonly IAuthService _authService;
@@ -24,7 +24,7 @@ namespace Eventador.APP.V2.Views
             RequestUserData();
             BindingContext = MainViewModel = new MainViewModel();
 
-            MasterBehavior = MasterBehavior.Popover;
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Eventador.APP.V2.Views
                 await Task.Delay(100);
             }
 
-            IsPresented = false;
+            //IsPresented = false;
         }
     }
 }

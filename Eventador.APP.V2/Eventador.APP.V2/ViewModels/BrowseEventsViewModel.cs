@@ -45,6 +45,20 @@ namespace Eventador.APP.V2.ViewModels
             });
         }
 
+        EventDetailsViewModel _yourSelectedItem;
+        public EventDetailsViewModel YourSelectedItem
+        {
+            get
+            {
+                return _yourSelectedItem;
+            }
+            set
+            {
+                _yourSelectedItem = value;
+                OnPropertyChanged("YourSelectedItem");
+            }
+        }
+
         private async Task ExecuteLoadItems()
         {
             IsBusy = true;
@@ -67,7 +81,7 @@ namespace Eventador.APP.V2.ViewModels
                 // Правильное исчезновение иконки загрузки получилось решить только так.
                 if (Device.RuntimePlatform == Device.Android)
                 {
-                    await Task.Delay(100);
+                    await Task.Delay(200);
                 }
                 IsBusy = false;
             }

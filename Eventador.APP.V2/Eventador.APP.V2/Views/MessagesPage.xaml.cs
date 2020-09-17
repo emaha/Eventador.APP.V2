@@ -8,6 +8,7 @@ namespace Eventador.APP.V2.Views
     {
         public MessagesPage()
         {
+            BindingContext = new MessagesViewModel();
             InitializeComponent();
         }
     }
