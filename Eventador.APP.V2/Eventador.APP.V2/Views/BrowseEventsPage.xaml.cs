@@ -1,5 +1,6 @@
 ﻿using Eventador.APP.V2.Models;
 using Eventador.APP.V2.ViewModels;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Views
@@ -22,7 +23,8 @@ namespace Eventador.APP.V2.Views
             if (item == null) return;
 
             var detailsModel = new EventDetailsViewModel(item.Id);
-            var page = new NavigationPage(new EventDetailsPage(detailsModel));
+            var eventDetailsPage = new EventDetailsPage(detailsModel);
+            var page = new NavigationPage(eventDetailsPage);
 
             await Navigation.PushAsync(page);
 
@@ -33,7 +35,7 @@ namespace Eventador.APP.V2.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if(viewModel.Items.Count == 0)
+            if (viewModel.Items.Count == 0)
             {
                 viewModel.LoadItemsCommand.Execute(null);
             }
