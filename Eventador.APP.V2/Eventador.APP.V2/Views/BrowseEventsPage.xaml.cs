@@ -37,7 +37,8 @@ namespace Eventador.APP.V2.Views
             base.OnAppearing();
             if (viewModel.Items.Count == 0)
             {
-                viewModel.LoadItemsCommand.Execute(null);
+                Task.Run(() => viewModel.LoadItemsCommand.Execute(null));
+                
             }
         }
 

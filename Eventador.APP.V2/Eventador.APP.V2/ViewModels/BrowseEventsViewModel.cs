@@ -45,6 +45,11 @@ namespace Eventador.APP.V2.ViewModels
             });
         }
 
+        ~BrowseEventsViewModel()
+        {
+            MessagingCenter.Unsubscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent");
+        }
+
         EventDetailsViewModel _yourSelectedItem;
         public EventDetailsViewModel YourSelectedItem
         {

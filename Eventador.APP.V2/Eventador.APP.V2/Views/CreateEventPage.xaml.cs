@@ -14,8 +14,6 @@ namespace Eventador.APP.V2.Views
 
         public CreateEventPage()
         {
-            InitializeComponent();
-
             ViewModel = new CreateEventViewModel();
             BindingContext = ViewModel;
 
@@ -30,6 +28,8 @@ namespace Eventador.APP.V2.Views
             {
                 ViewModel.Model.EventTypes.Add(item);
             }
+
+            InitializeComponent();
         }
 
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)

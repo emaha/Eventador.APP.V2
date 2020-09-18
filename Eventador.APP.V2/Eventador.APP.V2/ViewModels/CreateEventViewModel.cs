@@ -11,15 +11,15 @@ namespace Eventador.APP.V2.ViewModels
     public class CreateEventViewModel : BaseViewModel
     {
         public CreateEventModel Model { get; set; }
-        public ICommand CreateEventCommand => new Command(async () => await CreateEvent());
-        public ICommand CancelCommand => new Command(async () => await NavigateBack());
+        public ICommand CreateEventCommand => new Command(() => CreateEvent());
+        public ICommand CancelCommand => new Command(() => { MessagingCenter.Send(this, "CreateEvent"); });
 
         public CreateEventViewModel()
         {
             Model = new CreateEventModel();
         }
 
-        private async Task CreateEvent()
+        private void CreateEvent()
         {
             var item = new SmallEventModel
             {
@@ -30,10 +30,12 @@ namespace Eventador.APP.V2.ViewModels
                 SelectedEventType = Model.SelectedEventType
             };
 
-            //MessagingCenter.Send(this, "CreateEvent", item);
-            _ = await NavigateBack();
-        }
+            MessagingCenter.Send(this, "CreateEvent", item);
+            MessagingCenter.Send(this, "CreateEvent");
 
+            // Затираем набранные данные
+            Model = new CreateEventModel();
+        }
         
     }
 }

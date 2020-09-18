@@ -27,8 +27,8 @@
                 <DatePicker.MaximumDate>1/01/2050</DatePicker.MaximumDate>
             </DatePicker>
             <TimePicker Time="{Binding Model.SelectedTime, Mode=OneWayToSource}"/>
-            <Button Text="Save" Command="{Binding CancelCommand}"/>
-            <Button Text="Cancel" Command="{Binding CreateEventCommand}"/>
+            <Button Text="Save" Command="{Binding CreateEventCommand}"/>
+            <Button Text="Cancel" Command="{Binding CancelCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ViewModels:BasePage>
