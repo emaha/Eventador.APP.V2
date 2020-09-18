@@ -14,7 +14,8 @@
         Chat,
         Profile,
         Logout,
-        Favourites
+        Favourites,
+        EditEvent
     }
 
     public enum NavigationMode

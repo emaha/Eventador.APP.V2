@@ -5,8 +5,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Eventador.APP.V2.Views.EventDetailsPage"
-             Title="{Binding Item.Title}">
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Eventador.APP.V2.Views.EventDetailsPage">
 
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
@@ -49,7 +49,7 @@
             </StackLayout>-->
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
-                <Button Text="Edit Event" HorizontalOptions="CenterAndExpand" Clicked="EditButton_Clicked">
+                <Button Text="Edit Event" HorizontalOptions="CenterAndExpand" Command="{Binding EditEventCommand}">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button"
                                      Binding="{Binding isAuthor}"
@@ -58,8 +58,8 @@
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
-                <Button Text="GetIn" />
-                <Button Text="Chat" />
+                <Button Text="GetIn" Command="{Binding GetInCommand}"/>
+                <Button Text="Chat" Command="{Binding GoToEventChatCommand}"/>
             </StackLayout>
             <Button Text="Finish event" HorizontalOptions="CenterAndExpand" Command="{Binding FinishCommand}">
                 <Button.Triggers>

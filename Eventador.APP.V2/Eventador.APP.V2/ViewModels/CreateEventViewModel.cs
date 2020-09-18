@@ -31,7 +31,6 @@ namespace Eventador.APP.V2.ViewModels
             };
 
             MessagingCenter.Send(this, "CreateEvent", item);
-            MessagingCenter.Send(this, "CreateEvent");
 
             // Затираем набранные данные
             Model = new CreateEventModel();

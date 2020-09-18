@@ -11,33 +11,19 @@ namespace Eventador.APP.V2.Views
     {
         public EditEventViewModel Item { get; set; }
 
+        public EditEventPage()
+        {
+            BindingContext = Item = new EditEventViewModel();
+            InitializeComponent();
+        }
+
         public EditEventPage(EditEventViewModel viewModel)
         {
             BindingContext = Item = viewModel;
             InitializeComponent();
-
         }
 
-        async void Save_Clicked(object sender, EventArgs e)
-        {
-            var smallModel = new SmallEventModel
-            {
-                Id = Item.EditEventModel.Id,
-                Title = Item.EditEventModel.Title,
-                Description = Item.EditEventModel.Description,
-                StartDate = Item.EditEventModel.StartDate + Item.EditEventModel.SelectedTime,
-                SelectedAccessType = Item.EditEventModel.SelectedAccessType,
-                SelectedEventType = Item.EditEventModel.SelectedEventType
-            };
-
-            MessagingCenter.Send(this, "UpdateEvent", smallModel);
-            await Navigation.PopModalAsync(); 
-        }
-
-        async void Cancel_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
+        
 
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
         {

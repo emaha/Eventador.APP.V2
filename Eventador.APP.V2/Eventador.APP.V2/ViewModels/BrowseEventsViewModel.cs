@@ -43,6 +43,13 @@ namespace Eventador.APP.V2.ViewModels
                 await ShowAlert("Create", $"Event created successful with id = {id}", "OK");
                 item.Id = id;
             });
+
+            MessagingCenter.Unsubscribe<EditEventViewModel, SmallEventModel>(this, "CreateEvent");
+            MessagingCenter.Subscribe<EditEventViewModel, SmallEventModel>(this, "UpdateEvent", async (obj, item) =>
+            {
+                await DataStore.UpdateItemAsync(item);
+                await ShowAlert("Update", $"Event updated successfuly", "OK");
+            });
         }
 
         ~BrowseEventsViewModel()

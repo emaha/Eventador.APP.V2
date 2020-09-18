@@ -1,4 +1,5 @@
-﻿using Eventador.APP.V2.Models;
+﻿using Eventador.APP.V2.Common.Defines;
+using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Services;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -13,6 +14,10 @@ namespace Eventador.APP.V2.ViewModels
         private IEventadorApi _eventadorApi;
 
         public ICommand FinishCommand => new Command(async () => await Finish());
+        public ICommand EditEventCommand => new Command(async () => await EditEvent());
+        public ICommand GetInCommand => new Command(async () => await GetInEvent());
+
+        public ICommand GoToEventChatCommand => new Command(async () => await GoToEventChat());
 
         public bool isAuthor { get; set; }
         public EventModel Item { get; set; }
@@ -28,11 +33,26 @@ namespace Eventador.APP.V2.ViewModels
             isAuthor = Item.AuthorId == userId;
         }
 
+        private async Task EditEvent()
+        {
+            await NavigateTo(Pages.EditEvent);
+        }
+
+        private async Task GetInEvent()
+        {
+            await ShowAlert("GetInEvent", $"Raised", "OK");
+        }
+
+        private async Task GoToEventChat()
+        {
+            await ShowAlert("GoToEventChat", $"Raised", "OK");
+        }
+
         private async Task Finish()
         {
-            await _eventadorApi.FinishEvent(Item.Id);
-            Item = await _eventadorApi.GetEventById(Item.Id);
-            OnPropertyChanged("Item");
+            await ShowAlert("Finish", $"Raised", "OK");
+            //await _eventadorApi.FinishEvent(Item.Id);
+            //Item = await _eventadorApi.GetEventById(Item.Id);
         } 
     }
 }

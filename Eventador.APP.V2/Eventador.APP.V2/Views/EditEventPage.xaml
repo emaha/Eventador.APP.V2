@@ -7,8 +7,8 @@
              mc:Ignorable="d"
              x:Class="Eventador.APP.V2.Views.EditEventPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
-        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"/>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
