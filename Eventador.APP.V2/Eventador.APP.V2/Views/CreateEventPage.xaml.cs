@@ -32,7 +32,7 @@ namespace Eventador.APP.V2.Views
             InitializeComponent();
         }
 
-        private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
+        private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             if (ViewModel != null)
             {
@@ -40,11 +40,11 @@ namespace Eventador.APP.V2.Views
             }
         }
 
-        private void eventTypePicker_SelectedIndexChanged(object sender, EventArgs e)
+        private void EventTypePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
 
-        private void accessTypePicker_SelectedIndexChanged(object sender, EventArgs e)
+        private void AccessTypePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ViewModel != null)
             {

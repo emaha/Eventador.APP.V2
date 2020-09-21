@@ -25,8 +25,8 @@ namespace Eventador.APP.V2.Views
 
             NavigationPage.SetHasNavigationBar(this, false);
 
-            MessagingCenter.Unsubscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent");
-            MessagingCenter.Subscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent", (obj, item) =>
+            MessagingCenter.Unsubscribe<CreateEventViewModel>(this, "CancelCreateEvent");
+            MessagingCenter.Subscribe<CreateEventViewModel>(this, "CancelCreateEvent", (obj) =>
             {
                 CurrentPage = Children[0];
             });

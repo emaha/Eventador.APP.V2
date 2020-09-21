@@ -5,51 +5,92 @@ using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Controls
 {
-    public class DateTimeControl : StackLayout
+    public class DateTimeControl : ContentView, INotifyPropertyChanged
     {
-        private readonly DatePicker _date;
-        private readonly TimePicker _time;
-        public DateTimeControl() 
+        public Entry _entry { get; private set; } = new Entry();
+        public DatePicker _datePicker { get; private set; } = new DatePicker() { MinimumDate = DateTime.Today, IsVisible = false };
+        public TimePicker _timePicker { get; private set; } = new TimePicker() { IsVisible = false };
+        string _stringFormat { get; set; }
+        public string StringFormat { get { return _stringFormat ?? "dd/MM/yyyy HH:mm"; } set { _stringFormat = value; } }
+        public DateTime DateTime
         {
-            this.Orientation = StackOrientation.Horizontal;
-            this.Padding = 2;
+            get { return (DateTime)GetValue(DateTimeProperty); }
+            set { SetValue(DateTimeProperty, value); OnPropertyChanged("DateTime"); }
+        }
 
-            _date = new DatePicker();
-            _date.Format = CultureInfo.DefaultThreadCurrentUICulture.DateTimeFormat.ShortDatePattern;
-            _time = new TimePicker();
-            _time.Format = CultureInfo.DefaultThreadCurrentUICulture.DateTimeFormat.ShortTimePattern;
-            this.Children.Add(_date);
-            this.Children.Add(_time); 
-            _date.PropertyChanged += DateOnPropertyChanged;
-            _time.PropertyChanged += TimeOnPropertyChanged; 
-        }
-        private void TimeOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        private TimeSpan _time
         {
-            if (propertyChangedEventArgs.PropertyName == "Time")
+            get
             {
-                Value = _date.Date.Add(_time.Time);
+                return TimeSpan.FromTicks(DateTime.Ticks);
+            }
+            set
+            {
+                DateTime = new DateTime(DateTime.Date.Ticks).AddTicks(value.Ticks);
             }
         }
-        private void DateOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+
+        private DateTime _date
         {
-            if (propertyChangedEventArgs.PropertyName == "Date")
+            get
             {
-                Value = _date.Date.Add(_time.Time);
+                return DateTime.Date;
+            }
+            set
+            {
+                DateTime = new DateTime(DateTime.TimeOfDay.Ticks).AddTicks(value.Ticks);
             }
         }
-        #region Value 
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create<DateTimeControl, DateTime>(p => p.Value, default); 
-        public DateTime Value 
-        { 
-            get 
-            { 
-                return (DateTime)GetValue(ValueProperty); 
-            } 
-            set 
-            { 
-                SetValue(ValueProperty, value); 
-            } 
+
+        BindableProperty DateTimeProperty = BindableProperty.Create("DateTime", typeof(DateTime), typeof(DateTimeControl), DateTime.Now, BindingMode.TwoWay, propertyChanged: DTPropertyChanged);
+
+        public DateTimeControl()
+        {
+            BindingContext = this;
+
+            Content = new StackLayout()
+            {
+                Children =
+            {
+                _datePicker,
+                _timePicker,
+                _entry
+            }
+            };
+
+            _datePicker.SetBinding<DateTimeControl>(DatePicker.DateProperty, p => p._date);
+            _timePicker.SetBinding<DateTimeControl>(TimePicker.TimeProperty, p => p._time);
+            _timePicker.Unfocused += (sender, args) => _time = _timePicker.Time;
+            _datePicker.Focused += (s, a) => UpdateEntryText();
+
+            GestureRecognizers.Add(new TapGestureRecognizer()
+            {
+                Command = new Command(() => _datePicker.Focus())
+            });
+            _entry.Focused += (sender, args) =>
+            {
+                Device.BeginInvokeOnMainThread(() => _datePicker.Focus());
+            };
+            _datePicker.Unfocused += (sender, args) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    _timePicker.Focus();
+                    _date = _datePicker.Date;
+                    UpdateEntryText();
+                });
+            };
         }
-        #endregion }
+
+        private void UpdateEntryText()
+        {
+            _entry.Text = DateTime.ToString(StringFormat);
+        }
+
+        static void DTPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var timePicker = (bindable as DateTimeControl);
+            timePicker.UpdateEntryText();
+        }
     }
 }
