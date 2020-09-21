@@ -1,6 +1,9 @@
-﻿using Eventador.APP.V2.Types;
+﻿using Eventador.APP.V2.Common.Helpers;
+using Eventador.APP.V2.Controls;
+using Eventador.APP.V2.Types;
 using System;
 using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Models
 {
@@ -25,11 +28,6 @@ namespace Eventador.APP.V2.Models
         /// Дата начала
         /// </summary>
         public DateTime StartDate { get; set; }
-
-        /// <summary>
-        /// Выбранное время
-        /// </summary>
-        public TimeSpan SelectedTime { get; set; } = new TimeSpan(12, 10, 20);
 
         /// <summary>
         /// Список типов доступа

@@ -7,14 +7,12 @@ namespace Eventador.APP.V2.Views
 {
     public partial class BrowseEventsPage : BasePage
     {
-        private readonly BrowseEventsViewModel viewModel;
-        private readonly string Title = "Events";
-
+        private readonly BrowseEventsViewModel viewModel = new BrowseEventsViewModel();
 
         public BrowseEventsPage()
         {
-            BindingContext = viewModel = new BrowseEventsViewModel();
             InitializeComponent();
+            BindingContext = viewModel;
         }
 
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

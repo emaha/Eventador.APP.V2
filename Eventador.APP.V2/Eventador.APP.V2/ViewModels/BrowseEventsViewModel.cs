@@ -44,7 +44,7 @@ namespace Eventador.APP.V2.ViewModels
                 item.Id = id;
             });
 
-            MessagingCenter.Unsubscribe<EditEventViewModel, SmallEventModel>(this, "CreateEvent");
+            MessagingCenter.Unsubscribe<EditEventViewModel, SmallEventModel>(this, "UpdateEvent");
             MessagingCenter.Subscribe<EditEventViewModel, SmallEventModel>(this, "UpdateEvent", async (obj, item) =>
             {
                 await DataStore.UpdateItemAsync(item);
@@ -55,6 +55,7 @@ namespace Eventador.APP.V2.ViewModels
         ~BrowseEventsViewModel()
         {
             MessagingCenter.Unsubscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent");
+            MessagingCenter.Unsubscribe<CreateEventViewModel, SmallEventModel>(this, "UpdateEvent");
         }
 
         EventDetailsViewModel _yourSelectedItem;

@@ -4,9 +4,10 @@ using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Controls
 {
-    public class EventadorEntry : Entry
+    // Хз зачем вообще придумал этот Энтри
+    public class ColoredEntry : Entry
     {
-        public EventadorEntry()
+        public ColoredEntry()
         {
             BackgroundColor = Colors.EntryBackgroundColor;
             TextColor = Colors.EntryTextColor;

@@ -6,7 +6,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Eventador.APP.V2.Views.BrowseEventsPage"
-             Title="{Binding Title}"
              x:Name="BrowseItemsPage">
 
     <StackLayout>

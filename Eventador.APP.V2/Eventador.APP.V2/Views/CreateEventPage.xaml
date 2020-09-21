@@ -3,39 +3,33 @@
                      xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:Eventador.APP.V2.Controls"
-                     mc:Ignorable="d"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:controls="clr-namespace:Eventador.APP.V2.Controls"
+             mc:Ignorable="d"
              x:Class="Eventador.APP.V2.Views.CreateEventPage">
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Entry Placeholder="Event Title" Text="{Binding Model.Title}" d:Text="Item name" FontSize="Small" />
-            <Editor Placeholder="Description" Text="{Binding Model.Description}" d:Text="Item description" FontSize="Small" Margin="0" />
+            
+            <Entry Placeholder="Event Title" Text="{Binding Model.Title}" 
+                   d:Text="Item name" FontSize="Small" />
+            
+            <Editor Placeholder="Description" Text="{Binding Model.Description}" 
+                    d:Text="Item description" FontSize="Small" Margin="0" />
             
             <Label Text="Выбери тип события"/>
             <Picker x:Name="eventTypePicker" ItemsSource="{Binding Model.EventTypes}" 
-                    SelectedItem="{Binding Model.SelectedEventType}"
-                    SelectedIndexChanged="EventTypePicker_SelectedIndexChanged"/>
+                    SelectedItem="{Binding Model.SelectedEventType}"/>
             
             <Label x:Name="header" Text="Выберите тип доступа" FontSize="Medium"/>
             <Picker x:Name="accessTypePicker" ItemsSource="{Binding Model.AccessTypes}" 
-                    SelectedItem="{Binding Model.SelectedAccessType}"
-                    SelectedIndexChanged="AccessTypePicker_SelectedIndexChanged"/>
+                    SelectedItem="{Binding Model.SelectedAccessType}"/>
+            
             <Label Text="Выберите дату" FontSize="Medium" />
+            <controls:DateTimeControl DateTime="{Binding Model.StartDate}"/>
 
-            <DatePicker Date="{Binding Model.StartDate, Mode=OneWayToSource}" Format="D" 
-                        DateSelected="DatePicker_DateSelected">
-                <DatePicker.MinimumDate>1/01/2020</DatePicker.MinimumDate>
-                <DatePicker.MaximumDate>1/01/2050</DatePicker.MaximumDate>
-            </DatePicker>
-            <TimePicker Time="{Binding Model.SelectedTime, Mode=OneWayToSource}"/>
             <Button Text="Save" Command="{Binding CreateEventCommand}"/>
             <Button Text="Cancel" Command="{Binding CancelCommand}"/>
 
-            <!--<StackLayout>
-                <controls:DateTimeControl></controls:DateTimeControl>
-            </StackLayout>-->
-            
-            
         </StackLayout>
     </ContentPage.Content>
 </ViewModels:BasePage>
