@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventador.APP.V2.iOS", "Eve
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventador.APP.V2", "Eventador.APP.V2\Eventador.APP.V2\Eventador.APP.V2.csproj", "{22F4A4B6-C552-4CDF-BB33-D27588F3FF4A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{83649427-7136-46F5-83C8-570F048721B8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,9 +76,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{22F4A4B6-C552-4CDF-BB33-D27588F3FF4A} = {83649427-7136-46F5-83C8-570F048721B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77EF6396-AF05-4553-8CAF-4BFC3F9852BA}
