@@ -1,5 +1,4 @@
 ﻿using Eventador.APP.V2.Common.Defines;
-using System;
 using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Controls
@@ -12,6 +11,5 @@ namespace Eventador.APP.V2.Controls
             BackgroundColor = Colors.EntryBackgroundColor;
             TextColor = Colors.EntryTextColor;
         }
-        
     }
 }

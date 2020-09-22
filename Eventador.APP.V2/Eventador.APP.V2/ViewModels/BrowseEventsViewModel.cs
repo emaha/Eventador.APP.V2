@@ -4,6 +4,7 @@ using Eventador.APP.V2.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -86,7 +87,10 @@ namespace Eventador.APP.V2.ViewModels
                     Items.Add(item);
                 }
             }
-            catch (Exception){}
+            catch (Exception)
+            {
+                Debug.WriteLine("LoadItems Error");
+            }
             finally
             {
                 // Правильное исчезновение иконки загрузки получилось решить только так.

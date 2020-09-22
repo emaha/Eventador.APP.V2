@@ -1,25 +1,39 @@
-﻿using Eventador.APP.V2.Controls;
-using Eventador.APP.V2.Models;
+﻿using Eventador.APP.V2.Models;
 using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Eventador.APP.V2.ViewModels
 {
     /// <summary>
     /// Модель-представление для создания события
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public class CreateEventViewModel : BaseViewModel
     {
-        public CreateEventModel Model = new CreateEventModel();
+        public CreateEventModel Model { get; set; }
         public ICommand CreateEventCommand => new Command(() => CreateEvent());
         public ICommand CancelCommand => new Command(() => Cancel());
 
         public CreateEventViewModel()
         {
+            Model = new CreateEventModel();
+            FillTypes();
+        }
+
+        private void FillTypes()
+        {
+            Model.AccessTypes = new List<Types.AccessType>();
+            foreach (Types.AccessType item in Enum.GetValues(typeof(Types.AccessType)))
+            {
+                Model.AccessTypes.Add(item);
+            }
+
+            Model.EventTypes = new List<Types.EventType>();
+            foreach (Types.EventType item in Enum.GetValues(typeof(Types.EventType)))
+            {
+                Model.EventTypes.Add(item);
+            }
         }
 
         private void CreateEvent()
@@ -33,7 +47,9 @@ namespace Eventador.APP.V2.ViewModels
                 SelectedEventType = Model.SelectedEventType
             };
 
-            MessagingCenter.Send(this, "CreateEvent", item);
+            ShowAlert("Date", Model.StartDate.ToString(), "Ok");
+
+            //MessagingCenter.Send(this, "CreateEvent", item);
 
             // Затираем набранные данные
             Model = new CreateEventModel();
@@ -43,6 +59,5 @@ namespace Eventador.APP.V2.ViewModels
         {
             MessagingCenter.Send(this, "CancelCreateEvent");
         }
-
     }
 }

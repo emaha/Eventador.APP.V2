@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Eventador.APP.V2.ViewModels;
+using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Controls
 {
-    public class DateTimeControl : ContentView, INotifyPropertyChanged
+    public class DateTimeControl : ContentView
     {
         public Entry _entry { get; private set; } = new Entry();
         public DatePicker _datePicker { get; private set; } = new DatePicker() { MinimumDate = DateTime.Today, IsVisible = false };
@@ -20,34 +21,23 @@ namespace Eventador.APP.V2.Controls
 
         private TimeSpan _time
         {
-            get
-            {
-                return TimeSpan.FromTicks(DateTime.Ticks);
-            }
-            set
-            {
-                DateTime = new DateTime(DateTime.Date.Ticks).AddTicks(value.Ticks);
-            }
+            get { return TimeSpan.FromTicks(DateTime.Ticks); }
+            set { DateTime = new DateTime(DateTime.Date.Ticks).AddTicks(value.Ticks); }
         }
 
         private DateTime _date
         {
-            get
-            {
-                return DateTime.Date;
-            }
-            set
-            {
-                DateTime = new DateTime(DateTime.TimeOfDay.Ticks).AddTicks(value.Ticks);
-            }
+            get { return DateTime.Date; }
+            set { DateTime = new DateTime(DateTime.TimeOfDay.Ticks).AddTicks(value.Ticks); }
         }
 
-        public static readonly BindableProperty DateTimeProperty = BindableProperty.Create(
-            nameof(DateTime), 
-            typeof(DateTime), 
+        public static readonly BindableProperty DateTimeProperty =
+            BindableProperty.Create(
+            nameof(DateTime),
+            typeof(DateTime),
             typeof(DateTimeControl),
-            DateTime.Now, 
-            BindingMode.TwoWay, 
+            DateTime.Now,
+            BindingMode.TwoWay,
             propertyChanged: DTPropertyChanged);
 
         public DateTimeControl()
@@ -64,8 +54,8 @@ namespace Eventador.APP.V2.Controls
                 }
             };
 
-            _datePicker.SetBinding(DatePicker.DateProperty, nameof(_date));
-            _timePicker.SetBinding(TimePicker.TimeProperty, nameof(_time));
+            _datePicker.SetBinding(DatePicker.DateProperty, nameof(_date), BindingMode.TwoWay);
+            _timePicker.SetBinding(TimePicker.TimeProperty, nameof(_time), BindingMode.TwoWay);
             _timePicker.Unfocused += (sender, args) => _time = _timePicker.Time;
             _datePicker.Focused += (s, a) => UpdateEntryText();
 
@@ -95,7 +85,7 @@ namespace Eventador.APP.V2.Controls
 
         private static void DTPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var timePicker = (bindable as DateTimeControl);
+            var timePicker = bindable as DateTimeControl;
             timePicker.UpdateEntryText();
         }
     }

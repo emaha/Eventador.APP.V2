@@ -1,8 +1,6 @@
 ﻿using Eventador.APP.V2.Common;
 using Eventador.APP.V2.Common.Defines;
 using Eventador.APP.V2.Common.Helpers;
-using Eventador.APP.V2.Models;
-using Eventador.APP.V2.Services;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Concurrent;
@@ -17,8 +15,6 @@ namespace Eventador.APP.V2.ViewModels
 {
     public class BaseViewModel : Bindable, IDisposable
     {
-        
-
         private string title = string.Empty;
 
         public string PageTitle

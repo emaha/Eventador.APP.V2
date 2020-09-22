@@ -1,9 +1,6 @@
-﻿using Eventador.APP.V2.Common.Helpers;
-using Eventador.APP.V2.Controls;
-using Eventador.APP.V2.Types;
+﻿using Eventador.APP.V2.Types;
 using System;
 using System.Collections.Generic;
-using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Models
 {

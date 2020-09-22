@@ -1,6 +1,8 @@
 ﻿using Eventador.APP.V2.Common.Defines;
 using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Services;
+using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -29,7 +31,15 @@ namespace Eventador.APP.V2.ViewModels
 
         private void GetUserInfo()
         {
-            UserModel = _eventadorApi.GetUserByToken().Result;
+            try
+            {
+                UserModel = _eventadorApi.GetUserByToken().Result;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("GetUserInfo Error");
+            }
+            
         }
     }
 }

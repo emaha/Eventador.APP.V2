@@ -1,7 +1,9 @@
 ﻿using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Services;
 using Eventador.APP.V2.ViewModels;
+using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -11,17 +13,14 @@ namespace Eventador.APP.V2.Views
     public partial class MainPage : TabbedPage
     {
         private readonly IEventadorApi _eventadorApi;
-        private readonly IAuthService _authService;
-        public MainViewModel MainViewModel { get; set; }
+        public MainViewModel MainViewModel = new MainViewModel();
 
         public MainPage()
         {
-            InitializeComponent();
             _eventadorApi = EventadorApi.ResolveApi();
-            _authService = DependencyService.Resolve<AuthService>();
 
             RequestUserData();
-            BindingContext = MainViewModel = new MainViewModel();
+            BindingContext = MainViewModel;
 
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -36,6 +35,8 @@ namespace Eventador.APP.V2.Views
             {
                 CurrentPage = Children[0];
             });
+
+            InitializeComponent();
         }
 
         /// <summary>
@@ -47,8 +48,16 @@ namespace Eventador.APP.V2.Views
             var userId = await SecureStorage.GetAsync("UserId");
             if (string.IsNullOrWhiteSpace(userId))
             {
-                var userData = await _eventadorApi.GetUserByToken();
-                await SecureStorage.SetAsync("UserId", userData.Id.ToString());
+                try
+                {
+                    var userData = await _eventadorApi.GetUserByToken();
+                    await SecureStorage.SetAsync("UserId", userData.Id.ToString());
+                }
+                catch(Exception)
+                {
+                    Debug.WriteLine("GetUserByToken Error");
+                }
+                
             }
         }
 
