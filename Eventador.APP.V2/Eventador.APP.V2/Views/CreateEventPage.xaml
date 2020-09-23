@@ -27,9 +27,9 @@
             <Label Text="Выберите дату" FontSize="Medium" />
 
             <controls:DateTimeControl 
-                x:Name="dateTimePicker"
+                x:Name="DateTimePicker" 
                 DateTime="{Binding Model.StartDate}"/>
-            
+
             <Button Text="Save" Command="{Binding CreateEventCommand}"/>
             <Button Text="Cancel" Command="{Binding CancelCommand}"/>
 

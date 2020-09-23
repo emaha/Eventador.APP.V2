@@ -1,11 +1,11 @@
-﻿using Eventador.APP.V2.ViewModels;
-using System;
+﻿using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Controls
 {
-    public class DateTimeControl : ContentView
+    public class DateTimeControl : ContentView, INotifyPropertyChanged
     {
         public Entry _entry { get; private set; } = new Entry();
         public DatePicker _datePicker { get; private set; } = new DatePicker() { MinimumDate = DateTime.Today, IsVisible = false };
@@ -16,7 +16,11 @@ namespace Eventador.APP.V2.Controls
         public DateTime DateTime
         {
             get { return (DateTime)GetValue(DateTimeProperty); }
-            set { SetValue(DateTimeProperty, value); OnPropertyChanged(nameof(DateTime)); }
+            set
+            {
+                SetValue(DateTimeProperty, value);
+                OnPropertyChanged(nameof(DateTime));
+            }
         }
 
         private TimeSpan _time
@@ -40,6 +44,7 @@ namespace Eventador.APP.V2.Controls
             BindingMode.TwoWay,
             propertyChanged: DTPropertyChanged);
 
+
         public DateTimeControl()
         {
             BindingContext = this;
@@ -54,8 +59,9 @@ namespace Eventador.APP.V2.Controls
                 }
             };
 
-            _datePicker.SetBinding(DatePicker.DateProperty, nameof(_date), BindingMode.TwoWay);
-            _timePicker.SetBinding(TimePicker.TimeProperty, nameof(_time), BindingMode.TwoWay);
+
+            _datePicker.SetBinding(DatePicker.DateProperty, nameof(_date));
+            _timePicker.SetBinding(TimePicker.TimeProperty, nameof(_time));
             _timePicker.Unfocused += (sender, args) => _time = _timePicker.Time;
             _datePicker.Focused += (s, a) => UpdateEntryText();
 

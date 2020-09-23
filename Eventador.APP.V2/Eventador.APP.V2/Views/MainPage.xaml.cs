@@ -4,6 +4,7 @@ using Eventador.APP.V2.ViewModels;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -24,9 +25,10 @@ namespace Eventador.APP.V2.Views
 
             NavigationPage.SetHasNavigationBar(this, false);
 
-            MessagingCenter.Unsubscribe<CreateEventViewModel>(this, "CreateEvent");
-            MessagingCenter.Subscribe<CreateEventViewModel>(this, "CreateEvent", (obj) =>
+            MessagingCenter.Unsubscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent");
+            MessagingCenter.Subscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent", async (obj, _) =>
             {
+                await Task.Delay(600);
                 CurrentPage = Children[0];
             });
 

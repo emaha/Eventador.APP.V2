@@ -1,13 +1,14 @@
 ﻿using Eventador.APP.V2.Types;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Eventador.APP.V2.Models
 {
     /// <summary>
     /// Модель для создания события
     /// </summary>
-    public class CreateEventModel
+    public class CreateEventModel 
     {
         public long Id { get; set; }
 
@@ -50,5 +51,6 @@ namespace Eventador.APP.V2.Models
         /// Цена участия
         /// </summary>
         public decimal Price { get; set; }
+
     }
 }

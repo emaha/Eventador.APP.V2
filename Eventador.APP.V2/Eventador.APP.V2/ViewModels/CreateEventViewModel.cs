@@ -47,12 +47,9 @@ namespace Eventador.APP.V2.ViewModels
                 SelectedEventType = Model.SelectedEventType
             };
 
-            ShowAlert("Date", Model.StartDate.ToString(), "Ok");
+            //ShowAlert("Date", Model.StartDate.ToString(), "Ok");
 
-            //MessagingCenter.Send(this, "CreateEvent", item);
-
-            // Затираем набранные данные
-            Model = new CreateEventModel();
+            MessagingCenter.Send(this, "CreateEvent", item);
         }
 
         private void Cancel()

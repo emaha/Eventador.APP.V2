@@ -7,10 +7,10 @@
             xmlns:views="clr-namespace:Eventador.APP.V2.Views"
             x:Class="Eventador.APP.V2.Views.MainPage">
     <TabbedPage.Children>
-        <views:BrowseEventsPage Title="Поиск" IconImageSource="event3.jpg"/>
-        <views:FavouritesPage Title="Избранное" IconImageSource="event3.jpg"/>
+        <views:BrowseEventsPage Title="Поиск" IconImageSource="event1.jpg"/>
+        <views:FavouritesPage Title="Избранное" IconImageSource="event2.jpg"/>
         <views:CreateEventPage Title="Разместить" IconImageSource="event3.jpg"/>
-        <views:MessagesPage Title="Сообщения" IconImageSource="event3.jpg"/>
-        <views:ProfilePage Title="Профиль" IconImageSource="event3.jpg"/>
+        <views:MessagesPage Title="Сообщения" IconImageSource="event2.jpg"/>
+        <views:ProfilePage Title="Профиль" IconImageSource="event1.jpg"/>
     </TabbedPage.Children>
 </TabbedPage>
