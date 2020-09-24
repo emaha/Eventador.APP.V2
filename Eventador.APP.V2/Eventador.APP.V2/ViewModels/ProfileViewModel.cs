@@ -26,7 +26,7 @@ namespace Eventador.APP.V2.ViewModels
         private void Logout()
         {
             _authService.DeleteCredentials();
-            NavigateTo(Pages.Login, NavigationMode.RootPage);
+            NavigateTo(Pages.Login, null, NavigationMode.RootPage);
         }
 
         private void GetUserInfo()

@@ -123,6 +123,12 @@ namespace Eventador.APP.V2.ViewModels
             // do nothing
         }
 
+        protected static Task ChangeTabPage(int number)
+        {
+            MessageBus.SendMessage(Consts.NavigationTabPageMessage, number);
+            return Task.CompletedTask;
+        }
+
         protected static Task<bool> NavigateTo(object toName,
             object fromName = null,
             NavigationMode mode = NavigationMode.Normal,

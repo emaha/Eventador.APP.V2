@@ -29,33 +29,31 @@ namespace Eventador.APP.V2.Models
         public DateTime StartDate { get; set; }
 
         /// <summary>
-        /// Выбранное время
-        /// </summary>
-        public TimeSpan SelectedTime { get; set; }
-
-        /// <summary>
-        /// Список типов доступа
+        /// Выбранный тип доступа
         /// </summary>
         public AccessType AccessType { get; set; }
 
         /// <summary>
-        /// Выбранный тип доступа
-        /// </summary>
-        public AccessType SelectedAccessType { get; set; }
-
-        /// <summary>
-        /// Список типов событий
-        /// </summary>
-        public EventType Type { get; set; }
-
-        /// <summary>
         /// Выбранный тип события // TODO: в будущем предусмотреть множественный выбор
         /// </summary>
-        public EventType SelectedEventType { get; set; }
+        public EventType EventType { get; set; }
 
         /// <summary>
         /// Цена участия
         /// </summary>
         public decimal Price { get; set; }
+
+        public static object GetFromEventModel(EventModel item)
+        {
+            return new EditEventModel
+            {
+                Id = item.Id,
+                Title = item.Title,
+                Description = item.Description,
+                StartDate = item.StartDate,
+                AccessType = item.AccessType,
+                EventType = item.Type
+            };
+        }
     }
 }

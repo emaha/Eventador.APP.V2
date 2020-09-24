@@ -1,7 +1,5 @@
-﻿using Eventador.APP.V2.Models;
-using Eventador.APP.V2.ViewModels;
-using System;
-using Xamarin.Forms;
+﻿using Eventador.APP.V2.ViewModels;
+using System.ComponentModel;
 using Xamarin.Forms.Xaml;
 
 namespace Eventador.APP.V2.Views
@@ -9,46 +7,21 @@ namespace Eventador.APP.V2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditEventPage : BasePage
     {
-        public EditEventViewModel Item { get; set; }
+        public EditEventViewModel ViewModel { get; set; }
 
         public EditEventPage()
         {
-            BindingContext = Item = new EditEventViewModel();
+            BindingContext = ViewModel = new EditEventViewModel();
             InitializeComponent();
+            DateTimePicker.PropertyChanged += DateTimePicker_PropertyChanged;
         }
 
-        public EditEventPage(EditEventViewModel viewModel)
+        private void DateTimePicker_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            BindingContext = Item = viewModel;
-            InitializeComponent();
-        }
-
-        
-
-        private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
-        {
-            if (Item != null)
+            if (e.PropertyName == nameof(DateTimePicker.DateTime))
             {
-                Item.EditEventModel.StartDate = e.NewDate;
+                ViewModel.Model.StartDate = DateTimePicker.DateTime;
             }
-        }
-
-        private void eventTypePicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void accessTypePicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (Item != null)
-            {
-                // Item.AccessType = picker.
-            }
-            header.Text = $"Выберите тип доступа: ({accessTypePicker.SelectedIndex}) - {accessTypePicker.Items[accessTypePicker.SelectedIndex]} ";
-        }
-
-        private void TimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
         }
     }
 }

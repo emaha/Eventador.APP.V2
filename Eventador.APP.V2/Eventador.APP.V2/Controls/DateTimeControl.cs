@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace Eventador.APP.V2.Controls
@@ -44,7 +43,6 @@ namespace Eventador.APP.V2.Controls
             BindingMode.TwoWay,
             propertyChanged: DTPropertyChanged);
 
-
         public DateTimeControl()
         {
             BindingContext = this;
@@ -58,7 +56,6 @@ namespace Eventador.APP.V2.Controls
                     _entry
                 }
             };
-
 
             _datePicker.SetBinding(DatePicker.DateProperty, nameof(_date));
             _timePicker.SetBinding(TimePicker.TimeProperty, nameof(_time));

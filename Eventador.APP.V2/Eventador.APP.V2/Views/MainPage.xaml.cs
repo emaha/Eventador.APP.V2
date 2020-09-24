@@ -1,4 +1,6 @@
-﻿using Eventador.APP.V2.Models;
+﻿using Eventador.APP.V2.Common;
+using Eventador.APP.V2.Common.Defines;
+using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Services;
 using Eventador.APP.V2.ViewModels;
 using System;
@@ -25,20 +27,15 @@ namespace Eventador.APP.V2.Views
 
             NavigationPage.SetHasNavigationBar(this, false);
 
-            MessagingCenter.Unsubscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent");
-            MessagingCenter.Subscribe<CreateEventViewModel, SmallEventModel>(this, "CreateEvent", async (obj, _) =>
-            {
-                await Task.Delay(600);
-                CurrentPage = Children[0];
-            });
-
-            MessagingCenter.Unsubscribe<CreateEventViewModel>(this, "CancelCreateEvent");
-            MessagingCenter.Subscribe<CreateEventViewModel>(this, "CancelCreateEvent", (obj) =>
-            {
-                CurrentPage = Children[0];
-            });
+            MessagingCenter.Unsubscribe<MessageBus, int>(this, Consts.NavigationTabPageMessage);
+            MessagingCenter.Subscribe<MessageBus, int>(this, Consts.NavigationTabPageMessage, NavigationTabPageCallback);
 
             InitializeComponent();
+        }
+
+        private void NavigationTabPageCallback(MessageBus bus, int pageNumber)
+        {
+            CurrentPage = Children[pageNumber];
         }
 
         /// <summary>

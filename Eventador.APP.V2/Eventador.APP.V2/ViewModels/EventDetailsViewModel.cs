@@ -1,6 +1,7 @@
 ﻿using Eventador.APP.V2.Common.Defines;
 using Eventador.APP.V2.Models;
 using Eventador.APP.V2.Services;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,7 +17,6 @@ namespace Eventador.APP.V2.ViewModels
         public ICommand FinishCommand => new Command(async () => await Finish());
         public ICommand EditEventCommand => new Command(async () => await EditEvent());
         public ICommand GetInCommand => new Command(async () => await GetInEvent());
-
         public ICommand GoToEventChatCommand => new Command(async () => await GoToEventChat());
 
         public bool isAuthor { get; set; }
@@ -35,7 +35,12 @@ namespace Eventador.APP.V2.ViewModels
 
         private async Task EditEvent()
         {
-            await NavigateTo(Pages.EditEvent);
+            var editModel = EditEventModel.GetFromEventModel(Item);
+            var navParams = new Dictionary<string, object>()
+            {
+                { "Event", editModel }
+            };
+            await NavigateTo(Pages.EditEvent, navParams: navParams);
         }
 
         private async Task GetInEvent()
@@ -50,9 +55,13 @@ namespace Eventador.APP.V2.ViewModels
 
         private async Task Finish()
         {
-            await ShowAlert("Finish", $"Raised", "OK");
-            //await _eventadorApi.FinishEvent(Item.Id);
-            //Item = await _eventadorApi.GetEventById(Item.Id);
+            await _eventadorApi.FinishEvent(Item.Id);
+            Item = await _eventadorApi.GetEventById(Item.Id);
+
+            ShowToast($"Event with id={Item.Id} is finished", true,true);
+            await NavigateBack();
+
+            MessagingCenter.Send(this, "UpdateEventList");
         } 
     }
 }

@@ -47,14 +47,14 @@ namespace Eventador.APP.V2.ViewModels
                 SelectedEventType = Model.SelectedEventType
             };
 
-            //ShowAlert("Date", Model.StartDate.ToString(), "Ok");
-
             MessagingCenter.Send(this, "CreateEvent", item);
+
+            ChangeTabPage(0);
         }
 
         private void Cancel()
         {
-            MessagingCenter.Send(this, "CancelCreateEvent");
+            ChangeTabPage(0);
         }
     }
 }

@@ -52,6 +52,12 @@ namespace Eventador.APP.V2.ViewModels
                 await DataStore.UpdateItemAsync(item);
                 await ShowAlert("Update", $"Event updated successfuly", "OK");
             });
+
+            MessagingCenter.Unsubscribe<EventDetailsViewModel>(this, "UpdateEventList");
+            MessagingCenter.Subscribe<EventDetailsViewModel>(this, "UpdateEventList", (obj) =>
+            {
+                LoadItemsCommand.Execute(this);
+            });
         }
 
         ~BrowseEventsViewModel()
@@ -100,6 +106,7 @@ namespace Eventador.APP.V2.ViewModels
                     await Task.Delay(100);
                 }
                 IsBusy = false;
+                OnPropertyChanged();
             }
         }
 
