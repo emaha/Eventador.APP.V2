@@ -35,9 +35,7 @@
             
             <Label Text="Выберите дату" FontSize="Medium" />
 
-            <controls:DateTimeControl 
-                x:Name="DateTimePicker" 
-                DateTime="{Binding Model.StartDate, Mode=TwoWay}"/>
+            <controls:DateTimeControl DateTime="{Binding Model.StartDate, Mode=TwoWay}"/>
             
         </StackLayout>
     </ContentPage.Content>

@@ -100,13 +100,11 @@ namespace Eventador.APP.V2.ViewModels
             }
             finally
             {
-                // Правильное исчезновение иконки загрузки получилось решить только так.
                 if (Device.RuntimePlatform == Device.Android)
                 {
                     await Task.Delay(100);
                 }
                 IsBusy = false;
-                OnPropertyChanged();
             }
         }
 
