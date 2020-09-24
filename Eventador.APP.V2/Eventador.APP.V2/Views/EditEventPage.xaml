@@ -38,7 +38,7 @@
             <controls:DateTimeControl 
                 x:Name="DateTimePicker" 
                 DateTime="{Binding Model.StartDate, Mode=TwoWay}"/>
-
+            
         </StackLayout>
     </ContentPage.Content>
 </ViewModels:BasePage>

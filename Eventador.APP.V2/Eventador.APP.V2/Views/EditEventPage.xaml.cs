@@ -1,5 +1,8 @@
-﻿using Eventador.APP.V2.ViewModels;
+﻿using Acr.UserDialogs;
+using Eventador.APP.V2.ViewModels;
+using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Xamarin.Forms.Xaml;
 
 namespace Eventador.APP.V2.Views
@@ -13,15 +16,6 @@ namespace Eventador.APP.V2.Views
         {
             BindingContext = ViewModel = new EditEventViewModel();
             InitializeComponent();
-            DateTimePicker.PropertyChanged += DateTimePicker_PropertyChanged;
-        }
-
-        private void DateTimePicker_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(DateTimePicker.DateTime))
-            {
-                ViewModel.Model.StartDate = DateTimePicker.DateTime;
-            }
         }
     }
 }

@@ -15,11 +15,26 @@ namespace Eventador.APP.V2.Controls
         public DateTime DateTime
         {
             get { return (DateTime)GetValue(DateTimeProperty); }
-            set
+            set 
             {
                 SetValue(DateTimeProperty, value);
                 OnPropertyChanged(nameof(DateTime));
             }
+        }
+
+        public static readonly BindableProperty DateTimeProperty =
+            BindableProperty.Create(
+            nameof(DateTime),
+            typeof(DateTime),
+            typeof(DateTimeControl),
+            DateTime.Now,
+            BindingMode.TwoWay,
+            propertyChanged: DTPropertyChanged);
+
+        private static void DTPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var timePicker = bindable as DateTimeControl;
+            timePicker.UpdateEntryText();
         }
 
         private TimeSpan _time
@@ -34,19 +49,8 @@ namespace Eventador.APP.V2.Controls
             set { DateTime = new DateTime(DateTime.TimeOfDay.Ticks).AddTicks(value.Ticks); }
         }
 
-        public static readonly BindableProperty DateTimeProperty =
-            BindableProperty.Create(
-            nameof(DateTime),
-            typeof(DateTime),
-            typeof(DateTimeControl),
-            DateTime.Now,
-            BindingMode.TwoWay,
-            propertyChanged: DTPropertyChanged);
-
         public DateTimeControl()
         {
-            BindingContext = this;
-
             Content = new StackLayout()
             {
                 Children =
@@ -59,6 +63,7 @@ namespace Eventador.APP.V2.Controls
 
             _datePicker.SetBinding(DatePicker.DateProperty, nameof(_date));
             _timePicker.SetBinding(TimePicker.TimeProperty, nameof(_time));
+
             _timePicker.Unfocused += (sender, args) => _time = _timePicker.Time;
             _datePicker.Focused += (s, a) => UpdateEntryText();
 
@@ -84,12 +89,6 @@ namespace Eventador.APP.V2.Controls
         private void UpdateEntryText()
         {
             _entry.Text = DateTime.ToString(StringFormat);
-        }
-
-        private static void DTPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var timePicker = bindable as DateTimeControl;
-            timePicker.UpdateEntryText();
         }
     }
 }
