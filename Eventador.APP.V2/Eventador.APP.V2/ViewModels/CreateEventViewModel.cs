@@ -49,7 +49,7 @@ namespace Eventador.APP.V2.ViewModels
             };
 
             MessagingCenter.Send(this, "CreateEvent", item);
-
+            
             ChangeTabPage(0);
         }
 

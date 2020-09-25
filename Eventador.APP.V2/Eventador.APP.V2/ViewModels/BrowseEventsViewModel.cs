@@ -27,7 +27,7 @@ namespace Eventador.APP.V2.ViewModels
         public bool IsBusy
         {
             get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            set { SetProperty(ref isBusy, value); OnPropertyChanged(); }
         }
 
         public BrowseEventsViewModel()

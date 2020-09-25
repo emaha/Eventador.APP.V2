@@ -25,7 +25,7 @@ namespace Eventador.APP.V2.Models
         /// <summary>
         /// Дата начала
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now;
 
         /// <summary>
         /// Список типов доступа
