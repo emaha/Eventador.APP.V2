@@ -18,29 +18,32 @@
                     TextColor="Red"
                     Margin="10"/>
             </Grid>
-            <Label Text="{Binding Item.Title}" d:Text="Item name" FontSize="Large"/>
-            <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
-
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Status: " d:Text="Status"/>
-                <Label Text="{Binding Item.Status}" d:Text="Status"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Date: " d:Text="Start Date: "/>
-                <Label Text="{Binding Item.StartDate}" d:Text="StartDate"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="EnterCost: " d:Text="EnterCost: "/>
-                <Label Text="{Binding Item.Price}" d:Text="Price"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Type: " d:Text="Type: "/>
-                <Label Text="{Binding Item.Type}" d:Text="EventType"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="AccessType: " d:Text="AccessType: "/>
-                <Label Text="{Binding Item.AccessType}" d:Text="AccessType"/>
-            </StackLayout>
+            <Frame CornerRadius="10" Margin="50,10,50,20" >
+                <StackLayout Orientation="Vertical">
+                    <Label Text="{Binding Item.Title}" d:Text="Item name" FontSize="Large"/>
+                    <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Status: " d:Text="Status"/>
+                        <Label Text="{Binding Item.Status}" d:Text="Status"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Date: " d:Text="Start Date: "/>
+                        <Label Text="{Binding Item.StartDate}" d:Text="StartDate"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="EnterCost: " d:Text="EnterCost: "/>
+                        <Label Text="{Binding Item.Price}" d:Text="Price"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Type: " d:Text="Type: "/>
+                        <Label Text="{Binding Item.Type}" d:Text="EventType"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="AccessType: " d:Text="AccessType: "/>
+                        <Label Text="{Binding Item.AccessType}" d:Text="AccessType"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
             <!--
             <Label Text="{Binding Item.AuthorId}" d:Text="AuthorId"/>
             <StackLayout Orientation="Horizontal">
